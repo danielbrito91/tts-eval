@@ -1,0 +1,19 @@
+[build]
+  publish = "."
+
+[[headers]]
+  for = "/audio/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+    Content-Type = "audio/wav"
+
+[[headers]]
+  for = "*.wav"
+  [headers.values]
+    Content-Type = "audio/wav"
+
+# Ensure audio files are served with correct headers
+[[redirects]]
+  from = "/audio/*"
+  to = "/audio/:splat"
+  status = 200 

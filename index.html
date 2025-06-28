@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação TTS - Sistema de Coleta</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f0f2f5;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        h1 {
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            text-align: center;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+        
+        .progress-container {
+            margin-bottom: 30px;
+        }
+        
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #66BB6A);
+            transition: width 0.3s ease;
+            border-radius: 5px;
+        }
+        
+        .audio-container {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .audio-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .audio-title {
+            font-weight: 600;
+            font-size: 18px;
+            color: #333;
+        }
+        
+        .conversion-type {
+            background: #e3f2fd;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: #1976d2;
+            font-weight: 500;
+        }
+        
+        .reference-section {
+            background: #fff3e0;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ffe0b2;
+        }
+        
+        .reference-label {
+            font-weight: 500;
+            color: #e65100;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .reference-icon {
+            width: 20px;
+            height: 20px;
+            background: #ff6f00;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .synthesis-section {
+            background: #e8f5e9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border: 1px solid #c8e6c9;
+        }
+        
+        .synthesis-label {
+            font-weight: 500;
+            color: #2e7d32;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .synthesis-icon {
+            width: 20px;
+            height: 20px;
+            background: #388e3c;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        audio {
+            width: 100%;
+            margin-top: 10px;
+            height: 48px;
+        }
+        
+        .evaluation-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #fafafa;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .eval-title {
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 16px;
+        }
+        
+        .eval-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .rating-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .rating-option {
+            position: relative;
+            flex: 1;
+            min-width: 70px;
+            max-width: 90px;
+        }
+        
+        .rating-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+        }
+        
+        .rating-label {
+            display: block;
+            padding: 15px 10px;
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            font-weight: 500;
+            font-size: 18px;
+        }
+        
+        .rating-option input[type="radio"]:checked + .rating-label {
+            background: #4CAF50;
+            color: white;
+            border-color: #45a049;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+        }
+        
+        .rating-label:hover {
+            border-color: #bdbdbd;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .rating-option input[type="radio"]:checked + .rating-label:hover {
+            border-color: #45a049;
+        }
+        
+        .scale-info {
+            font-size: 13px;
+            color: #666;
+            text-align: center;
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+        }
+        
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 15px;
+        }
+        
+        button {
+            padding: 14px 28px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-prev {
+            background: #f5f5f5;
+            color: #666;
+        }
+        
+        .btn-prev:hover:not(:disabled) {
+            background: #e0e0e0;
+            transform: translateX(-2px);
+        }
+        
+        .btn-next {
+            background: #2196F3;
+            color: white;
+            margin-left: auto;
+        }
+        
+        .btn-next:hover {
+            background: #1976D2;
+            transform: translateX(2px);
+            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+        }
+        
+        .btn-submit {
+            background: #4CAF50;
+            color: white;
+            margin-left: auto;
+        }
+        
+        .btn-submit:hover {
+            background: #45a049;
+            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+        }
+        
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+        
+        .intro-screen, .finish-screen {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .intro-screen h2 {
+            margin-bottom: 25px;
+            color: #1a1a1a;
+        }
+        
+        .intro-screen p {
+            margin-bottom: 20px;
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        .intro-list {
+            text-align: left;
+            max-width: 600px;
+            margin: 30px auto;
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+        }
+        
+        .intro-list li {
+            margin-bottom: 15px;
+            color: #444;
+        }
+        
+        .participant-form {
+            margin: 30px 0;
+            text-align: left;
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #444;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            transition: border-color 0.2s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #2196F3;
+        }
+        
+        .finish-message {
+            font-size: 18px;
+            color: #4CAF50;
+            margin-bottom: 30px;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            color: #856404;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+            }
+            
+            .rating-group {
+                gap: 8px;
+            }
+            
+            .rating-option {
+                min-width: 60px;
+            }
+            
+            .rating-label {
+                padding: 12px 8px;
+                font-size: 16px;
+            }
+        }
+        
+        /* Animações */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .audio-container {
+            animation: fadeIn 0.3s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Tela Inicial -->
+        <div id="introScreen" class="intro-screen">
+            <h1>Sistema de Avaliação TTS</h1>
+            <p class="subtitle">Avaliação de Qualidade de Síntese de Voz Cross-Lingual</p>
+            
+            <div class="warning">
+                <strong>⚠️ Importante:</strong> Use fones de ouvido para melhor qualidade de avaliação.
+            </div>
+            
+            <p>Você participará de uma avaliação de sistemas de síntese de voz. Para cada amostra, você deverá avaliar três aspectos:</p>
+            
+            <ul class="intro-list">
+                <li><strong>Qualidade Geral (MOS):</strong> O quão natural e agradável é o áudio sintetizado, considerando clareza, prosódia e ausência de artefatos. <em>(Avalie primeiro sem ouvir a referência)</em></li>
+                <li><strong>Similaridade do Falante:</strong> O quão similar é a voz sintetizada comparada com a voz de referência do mesmo falante.</li>
+                <li><strong>Similaridade da Emoção:</strong> O quão bem a emoção foi preservada comparando o áudio de referência com o sintetizado.</li>
+            </ul>
+            
+            <p>O teste consiste em 32 amostras e leva aproximadamente 20-25 minutos.</p>
+            
+            <div class="participant-form">
+                <div class="form-group">
+                    <label for="participantId">Código do Participante:</label>
+                    <input type="text" id="participantId" placeholder="Ex: P001" required>
+                </div>
+                <div class="form-group">
+                    <label for="participantAge">Idade:</label>
+                    <input type="number" id="participantAge" min="18" max="100" placeholder="Ex: 25">
+                </div>
+            </div>
+            
+            <button class="btn-next" onclick="startEvaluation()">
+                Iniciar Avaliação
+                <span>→</span>
+            </button>
+        </div>
+
+        <!-- Tela de Avaliação -->
+        <div id="evaluationScreen" style="display: none;">
+            <h1>Avaliação de Síntese de Voz</h1>
+            
+            <div class="progress-container">
+                <div class="progress-info">
+                    <span>Amostra <strong id="currentSample">1</strong> de <strong id="totalSamples">32</strong></span>
+                    <span id="timeEstimate">~20 min restantes</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressBar"></div>
+                </div>
+            </div>
+            
+            <div class="audio-container">
+                <div class="audio-header">
+                    <div class="audio-title">Amostra de Avaliação</div>
+                    <div class="conversion-type" id="conversionType">-</div>
+                </div>
+                
+                <!-- Áudios de Referência -->
+                <div class="reference-section" id="referenceSection" style="display: none;">
+                    <div class="reference-label">
+                        <span class="reference-icon">R</span>
+                        Áudio de Referência (voz e emoção originais)
+                    </div>
+                    <div class="eval-description" style="font-size: 13px; color: #e65100; font-style: italic; margin-bottom: 15px;">
+                        Use este áudio de referência para avaliar a similaridade do falante e da emoção (questões 2 e 3).
+                    </div>
+                    <audio id="referenceAudio" controls>
+                        <source src="" type="audio/wav">
+                    </audio>
+                </div>
+                
+                <!-- Áudio Sintetizado -->
+                <div class="synthesis-section">
+                    <div class="synthesis-label">
+                        <span class="synthesis-icon">S</span>
+                        Áudio Sintetizado (para avaliar)
+                    </div>
+                    <audio id="synthesizedAudio" controls>
+                        <source src="" type="audio/wav">
+                    </audio>
+                </div>
+            </div>
+            
+            <!-- Avaliação MOS -->
+            <div class="evaluation-section">
+                <div class="eval-title">1. Qualidade Geral (MOS)</div>
+                <div class="eval-description">
+                    <strong>Primeiro, ouça apenas o áudio sintetizado</strong> e avalie sua qualidade geral considerando naturalidade, clareza e ausência de artefatos. O áudio de referência aparecerá após sua resposta.
+                </div>
+                <div class="rating-group">
+                    <div class="rating-option">
+                        <input type="radio" id="mos1" name="mos" value="1" onclick="checkMOSAndShowReference()">
+                        <label class="rating-label" for="mos1">1</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="radio" id="mos2" name="mos" value="2" onclick="checkMOSAndShowReference()">
+                        <label class="rating-label" for="mos2">2</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="radio" id="mos3" name="mos" value="3" onclick="checkMOSAndShowReference()">
+                        <label class="rating-label" for="mos3">3</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="radio" id="mos4" name="mos" value="4" onclick="checkMOSAndShowReference()">
+                        <label class="rating-label" for="mos4">4</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="radio" id="mos5" name="mos" value="5" onclick="checkMOSAndShowReference()">
+                        <label class="rating-label" for="mos5">5</label>
+                    </div>
+                </div>
+                <div class="scale-info">
+                    <span>1 - Péssimo</span>
+                    <span>3 - Razoável</span>
+                    <span>5 - Excelente</span>
+                </div>
+            </div>
+            
+            <!-- Similaridade do Falante -->
+            <div class="evaluation-section">
+                <div class="eval-title">2. Similaridade do Falante</div>
+                <div class="eval-description">
+                    Compare a voz do áudio sintetizado com a voz do áudio de referência. Quão similar são as vozes?
+                </div>
+                <div class="rating-group">
+                    <div class="rating-option">
+                        <input type="radio" id="spk1" name="spksim" value="1">
+                        <label class="rating-label" for="spk1">1</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="radio" id="spk2" name="spksim" value="2">
+                        <label class="rating-label" for="spk2">2</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="radio" id="spk3" name="spksim" value="3">
+                        <label class="rating-label" for="spk3">3</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="radio" id="spk4" name="spksim" value="4">
+                        <label class="rating-label" for="spk4">4</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="radio" id="spk5" name="spksim" value="5">
+                        <label class="rating-label" for="spk5">5</label>
+                    </div>
+                </div>
+                <div class="scale-info">
+                    <span>1 - Totalmente diferente</span>
+                    <span>3 - Parcialmente similar</span>
+                    <span>5 - Idêntica</span>
+                </div>
+            </div>
+            
+            <!-- Similaridade da Emoção -->
+            <div class="evaluation-section">
+                <div class="eval-title">3. Similaridade da Emoção</div>
+                <div class="eval-description">
+                    Compare a emoção expressa no áudio sintetizado com a emoção do áudio de referência. A emoção foi preservada?
+                </div>
+                <div class="rating-group">
+                    <div class="rating-option">
+                        <input type="radio" id="emo1" name="emosim" value="1">
+                        <label class="rating-label" for="emo1">1</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="radio" id="emo2" name="emosim" value="2">
+                        <label class="rating-label" for="emo2">2</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="radio" id="emo3" name="emosim" value="3">
+                        <label class="rating-label" for="emo3">3</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="radio" id="emo4" name="emosim" value="4">
+                        <label class="rating-label" for="emo4">4</label>
+                    </div>
+                    <div class="rating-option">
+                        <input type="radio" id="emo5" name="emosim" value="5">
+                        <label class="rating-label" for="emo5">5</label>
+                    </div>
+                </div>
+                <div class="scale-info">
+                    <span>1 - Emoção não preservada</span>
+                    <span>3 - Parcialmente preservada</span>
+                    <span>5 - Perfeitamente preservada</span>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                <button class="btn-prev" onclick="previousSample()" id="prevBtn">
+                    <span>←</span>
+                    Anterior
+                </button>
+                <button class="btn-next" onclick="nextSample()" id="nextBtn">
+                    Próxima
+                    <span>→</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Tela Final -->
+        <div id="finishScreen" class="finish-screen" style="display: none;">
+            <h1>Avaliação Concluída!</h1>
+            <p class="finish-message">✅ Suas respostas foram registradas com sucesso.</p>
+            
+            <p>Obrigado por participar desta avaliação. Sua contribuição é fundamental para nossa pesquisa.</p>
+            
+            <div class="warning" style="margin-top: 30px;">
+                <strong>Código de confirmação:</strong> <span id="confirmationCode"></span><br>
+                Por favor, anote este código como comprovante de participação.
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden form for Netlify Forms -->
+    <form name="tts-results" netlify hidden>
+        <input type="text" name="participant_id" />
+        <input type="text" name="confirmation_code" />
+        <input type="text" name="results_json" />
+        <input type="text" name="timestamp" />
+    </form>
+
+    <script>
+        // Configuração das amostras - BLIND (sem revelar modelo ou emoção)
+        const audioSamples = [
+            // Emotion-based samples with RAVDESS codes
+            {id: 1, synth: "03-01-05-01-01-01-01_angry", ref: "03-01-05-01-01-01-01_angry.wav", type: "EN→PT", emotion: "Raiva", model: "VECL", speaker: "ravdess"},
+            {id: 2, synth: "03-01-05-01-01-01-01_angry", ref: "03-01-05-01-01-01-01_angry.wav", type: "EN→PT", emotion: "Raiva", model: "CML", speaker: "ravdess"},
+            {id: 3, synth: "03-01-04-01-01-02-04_sad", ref: "03-01-04-01-01-02-04_sad.wav", type: "EN→PT", emotion: "Tristeza", model: "VECL", speaker: "ravdess"},
+            {id: 4, synth: "03-01-04-01-01-02-04_sad", ref: "03-01-04-01-01-02-04_sad.wav", type: "EN→PT", emotion: "Tristeza", model: "CML", speaker: "ravdess"},
+            {id: 5, synth: "03-01-03-01-01-02-22_happy", ref: "03-01-03-01-01-02-22_happy.wav", type: "EN→PT", emotion: "Alegria", model: "VECL", speaker: "ravdess"},
+            {id: 6, synth: "03-01-03-01-01-02-22_happy", ref: "03-01-03-01-01-02-22_happy.wav", type: "EN→PT", emotion: "Alegria", model: "CML", speaker: "ravdess"},
+            {id: 7, synth: "03-01-01-01-01-01-15_neutral", ref: "03-01-01-01-01-01-15_neutral.wav", type: "EN→PT", emotion: "Neutro", model: "VECL", speaker: "ravdess"},
+            {id: 8, synth: "03-01-01-01-01-01-15_neutral", ref: "03-01-01-01-01-01-15_neutral.wav", type: "EN→PT", emotion: "Neutro", model: "CML", speaker: "ravdess"},
+            
+            // Speaker-based samples - Cross-language (PT→EN)
+            {id: 9, synth: "ale-f1-l5", ref: "ale-f1-l5.wav", type: "PT→EN", emotion: "Neutro", model: "VECL", speaker: "ale-f1-l5"},
+            {id: 10, synth: "ale-f1-l5", ref: "ale-f1-l5.wav", type: "PT→EN", emotion: "Neutro", model: "CML", speaker: "ale-f1-l5"},
+            {id: 11, synth: "neu-m5-q2", ref: "neu-m5-q2.wav", type: "PT→EN", emotion: "Neutro", model: "VECL", speaker: "neu-m5-q2"},
+            {id: 12, synth: "neu-m5-q2", ref: "neu-m5-q2.wav", type: "PT→EN", emotion: "Neutro", model: "CML", speaker: "neu-m5-q2"},
+            {id: 13, synth: "rai-m1-l1", ref: "rai-m1-l1.wav", type: "PT→EN", emotion: "Neutro", model: "VECL", speaker: "rai-m1-l1"},
+            {id: 14, synth: "rai-m1-l1", ref: "rai-m1-l1.wav", type: "PT→EN", emotion: "Neutro", model: "CML", speaker: "rai-m1-l1"},
+            {id: 15, synth: "tri-f4-l3", ref: "tri-f4-l3.wav", type: "PT→EN", emotion: "Neutro", model: "VECL", speaker: "tri-f4-l3"},
+            {id: 16, synth: "tri-f4-l3", ref: "tri-f4-l3.wav", type: "PT→EN", emotion: "Neutro", model: "CML", speaker: "tri-f4-l3"},
+            
+            // Same-language samples (PT→PT)
+            {id: 17, synth: "ale-f1-l5", ref: "ale-f1-l5.wav", type: "PT→PT", emotion: "Neutro", model: "VECL", speaker: "ale-f1-l5"},
+            {id: 18, synth: "ale-f1-l5", ref: "ale-f1-l5.wav", type: "PT→PT", emotion: "Neutro", model: "CML", speaker: "ale-f1-l5"},
+            {id: 19, synth: "neu-m5-q2", ref: "neu-m5-q2.wav", type: "PT→PT", emotion: "Neutro", model: "VECL", speaker: "neu-m5-q2"},
+            {id: 20, synth: "neu-m5-q2", ref: "neu-m5-q2.wav", type: "PT→PT", emotion: "Neutro", model: "CML", speaker: "neu-m5-q2"},
+            {id: 21, synth: "rai-m1-l1", ref: "rai-m1-l1.wav", type: "PT→PT", emotion: "Neutro", model: "VECL", speaker: "rai-m1-l1"},
+            {id: 22, synth: "rai-m1-l1", ref: "rai-m1-l1.wav", type: "PT→PT", emotion: "Neutro", model: "CML", speaker: "rai-m1-l1"},
+            {id: 23, synth: "tri-f4-l3", ref: "tri-f4-l3.wav", type: "PT→PT", emotion: "Neutro", model: "VECL", speaker: "tri-f4-l3"},
+            {id: 24, synth: "tri-f4-l3", ref: "tri-f4-l3.wav", type: "PT→PT", emotion: "Neutro", model: "CML", speaker: "tri-f4-l3"},
+            
+            // Emotion samples with same-language
+            {id: 25, synth: "03-01-05-01-01-01-01_angry", ref: "03-01-05-01-01-01-01_angry.wav", type: "EN→EN", emotion: "Raiva", model: "VECL", speaker: "ravdess"},
+            {id: 26, synth: "03-01-05-01-01-01-01_angry", ref: "03-01-05-01-01-01-01_angry.wav", type: "EN→EN", emotion: "Raiva", model: "CML", speaker: "ravdess"},
+            {id: 27, synth: "03-01-04-01-01-02-04_sad", ref: "03-01-04-01-01-02-04_sad.wav", type: "EN→EN", emotion: "Tristeza", model: "VECL", speaker: "ravdess"},
+            {id: 28, synth: "03-01-04-01-01-02-04_sad", ref: "03-01-04-01-01-02-04_sad.wav", type: "EN→EN", emotion: "Tristeza", model: "CML", speaker: "ravdess"},
+            {id: 29, synth: "03-01-03-01-01-02-22_happy", ref: "03-01-03-01-01-02-22_happy.wav", type: "EN→EN", emotion: "Alegria", model: "VECL", speaker: "ravdess"},
+            {id: 30, synth: "03-01-03-01-01-02-22_happy", ref: "03-01-03-01-01-02-22_happy.wav", type: "EN→EN", emotion: "Alegria", model: "CML", speaker: "ravdess"},
+            {id: 31, synth: "03-01-01-01-01-01-15_neutral", ref: "03-01-01-01-01-01-15_neutral.wav", type: "EN→EN", emotion: "Neutro", model: "VECL", speaker: "ravdess"},
+            {id: 32, synth: "03-01-01-01-01-01-15_neutral", ref: "03-01-01-01-01-01-15_neutral.wav", type: "EN→EN", emotion: "Neutro", model: "CML", speaker: "ravdess"}
+        ];
+
+        // Variáveis globais
+        let currentIndex = 0;
+        let evaluationResults = [];
+        let participantData = {};
+        let shuffledSamples = [];
+        let startTime;
+        let sampleStartTime;
+
+        // Função para embaralhar array
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+
+        // Iniciar avaliação
+        function startEvaluation() {
+            const participantId = document.getElementById('participantId').value.trim();
+            const participantAge = document.getElementById('participantAge').value;
+            
+            if (!participantId) {
+                alert('Por favor, insira o código do participante.');
+                return;
+            }
+            
+            participantData = {
+                id: participantId,
+                age: participantAge || null,
+                startTime: new Date().toISOString()
+            };
+            
+            startTime = Date.now();
+            shuffledSamples = shuffleArray(audioSamples);
+            
+            document.getElementById('introScreen').style.display = 'none';
+            document.getElementById('evaluationScreen').style.display = 'block';
+            document.getElementById('totalSamples').textContent = shuffledSamples.length;
+            
+            loadSample(0);
+        }
+
+        // Carregar amostra
+        function loadSample(index) {
+            const sample = shuffledSamples[index];
+            sampleStartTime = Date.now();
+            
+            // Atualizar informações
+            document.getElementById('currentSample').textContent = index + 1;
+            document.getElementById('conversionType').textContent = sample.type;
+            
+            // Construir caminhos dos áudios
+            const audioBasePath = 'audio/';
+            
+            // Áudio de referência (sempre na pasta refs/)
+            const referencePath = audioBasePath + 'refs/' + sample.ref;
+            
+            // Áudio sintetizado - construir nome do arquivo baseado no modelo e tipo
+            let synthFileName = sample.synth;
+            let synthFolder = sample.model.toLowerCase(); // 'vecl' ou 'cml'
+            
+            // Determinar sufixo baseado no tipo de conversão
+            let languageSuffix = '';
+            if (sample.type === 'PT→EN' || sample.type === 'EN→PT') {
+                languageSuffix = '_cross-language';
+            } else {
+                languageSuffix = '_same-language';
+            }
+            
+            // Construir nome completo do arquivo
+            let synthFileExtension = '';
+            if (synthFolder === 'cml') {
+                synthFileExtension = '.wav.wav'; // CML tem extensão dupla
+            } else {
+                synthFileExtension = '.wav'; // VECL tem extensão simples
+            }
+            
+            const synthFileName_full = synthFileName + languageSuffix + synthFileExtension;
+            const synthPath = audioBasePath + synthFolder + '/' + synthFileName_full;
+            
+            // Carregar áudios
+            document.getElementById('referenceAudio').src = referencePath;
+            document.getElementById('synthesizedAudio').src = synthPath;
+            
+            // Limpar seleções anteriores
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.checked = false;
+            });
+            
+            // Esconder seção de referência inicialmente
+            document.getElementById('referenceSection').style.display = 'none';
+            
+            // Atualizar progresso
+            updateProgress(index);
+            
+            // Gerenciar botões
+            document.getElementById('prevBtn').disabled = index === 0;
+            
+            if (index === shuffledSamples.length - 1) {
+                document.getElementById('nextBtn').textContent = 'Finalizar';
+                document.getElementById('nextBtn').classList.remove('btn-next');
+                document.getElementById('nextBtn').classList.add('btn-submit');
+            } else {
+                document.getElementById('nextBtn').innerHTML = 'Próxima <span>→</span>';
+                document.getElementById('nextBtn').classList.remove('btn-submit');
+                document.getElementById('nextBtn').classList.add('btn-next');
+            }
+            
+            // Pausar áudios ao carregar nova amostra
+            document.getElementById('referenceAudio').pause();
+            document.getElementById('synthesizedAudio').pause();
+        }
+        
+        // Função para mostrar referência quando MOS for respondido
+        function checkMOSAndShowReference() {
+            const mosSelected = document.querySelector('input[name="mos"]:checked');
+            if (mosSelected) {
+                document.getElementById('referenceSection').style.display = 'block';
+            }
+        }
+
+        // Atualizar progresso e tempo estimado
+        function updateProgress(index) {
+            const progress = ((index + 1) / shuffledSamples.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            
+            // Estimar tempo restante
+            if (index > 0) {
+                const avgTimePerSample = (Date.now() - startTime) / (index + 1);
+                const remainingSamples = shuffledSamples.length - index - 1;
+                const remainingTime = Math.ceil((avgTimePerSample * remainingSamples) / 60000);
+                document.getElementById('timeEstimate').textContent = `~${remainingTime} min restantes`;
+            }
+        }
+
+        // Próxima amostra
+        function nextSample() {
+            // Verificar se todas as avaliações foram feitas
+            const mos = document.querySelector('input[name="mos"]:checked');
+            const spksim = document.querySelector('input[name="spksim"]:checked');
+            const emosim = document.querySelector('input[name="emosim"]:checked');
+            
+            if (!mos || !spksim || !emosim) {
+                alert('Por favor, avalie todos os três aspectos antes de continuar.');
+                return;
+            }
+            
+            // Salvar resultados
+            const sample = shuffledSamples[currentIndex];
+            const evaluationTime = Date.now() - sampleStartTime;
+            
+            evaluationResults.push({
+                sampleId: sample.id,
+                presentationOrder: currentIndex + 1,
+                type: sample.type,
+                // Informações ocultas (para análise posterior)
+                hiddenData: {
+                    emotion: sample.emotion,
+                    model: sample.model,
+                    synthFile: sample.synth,
+                    refFile: sample.ref
+                },
+                // Avaliações
+                ratings: {
+                    mos: parseInt(mos.value),
+                    speakerSimilarity: parseInt(spksim.value),
+                    emotionSimilarity: parseInt(emosim.value)
+                },
+                evaluationTime: evaluationTime,
+                timestamp: new Date().toISOString()
+            });
+            
+            // Próxima amostra ou finalizar
+            if (currentIndex < shuffledSamples.length - 1) {
+                currentIndex++;
+                loadSample(currentIndex);
+            } else {
+                finishEvaluation();
+            }
+        }
+
+        // Amostra anterior
+        function previousSample() {
+            if (currentIndex > 0) {
+                // Remover última avaliação se voltando
+                evaluationResults.pop();
+                currentIndex--;
+                loadSample(currentIndex);
+            }
+        }
+
+        // Finalizar avaliação
+        function finishEvaluation() {
+            participantData.endTime = new Date().toISOString();
+            participantData.totalTime = Date.now() - startTime;
+            
+            // Gerar código de confirmação
+            const confirmationCode = 'TTS-' + Date.now().toString(36).toUpperCase();
+            document.getElementById('confirmationCode').textContent = confirmationCode;
+            
+            // Preparar dados para salvamento
+            const evaluationData = {
+                version: "1.0",
+                test: "TTS_BLIND_EVALUATION",
+                participant: participantData,
+                confirmationCode: confirmationCode,
+                results: evaluationResults
+            };
+            
+            // Salvar dados localmente
+            saveResults(evaluationData);
+            
+            // Mostrar tela final
+            document.getElementById('evaluationScreen').style.display = 'none';
+            document.getElementById('finishScreen').style.display = 'block';
+        }
+
+        // Salvar resultados
+        function saveResults(data) {
+            // Check if we're running on Netlify or locally
+            const isNetlify = window.location.hostname !== 'localhost' && 
+                            window.location.hostname !== '127.0.0.1' && 
+                            !window.location.hostname.includes('local');
+            
+            if (isNetlify) {
+                console.log('🌐 Deployed site detected - attempting Netlify Form submission...');
+                // Try to submit to server first
+                submitToServer(data).then(() => {
+                    console.log('✅ Results submitted successfully to Netlify Forms!');
+                    alert('✅ Resultados enviados com sucesso para o servidor!');
+                }).catch(error => {
+                    console.error('❌ Server submission failed:', error);
+                    console.log('📥 Falling back to download...');
+                    alert('⚠️ Falha no envio. Fazendo download como backup...');
+                    downloadResults(data);
+                });
+            } else {
+                console.log('🏠 Local testing detected - downloading results...');
+                alert('🏠 Teste local: baixando resultados como arquivo JSON');
+                downloadResults(data);
+            }
+        }
+
+        // Submit results to Netlify Forms
+        async function submitToServer(data) {
+            const formData = new FormData();
+            formData.append('form-name', 'tts-results');
+            formData.append('participant_id', data.participant.id);
+            formData.append('confirmation_code', data.confirmationCode);
+            formData.append('results_json', JSON.stringify(data));
+            formData.append('timestamp', new Date().toISOString());
+            
+            const response = await fetch('/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams(formData).toString()
+            });
+            
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            
+            return response;
+        }
+
+        // Fallback download function
+        function downloadResults(data) {
+            // Criar blob com os dados
+            const dataStr = JSON.stringify(data, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            
+            // Criar link de download
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `tts_eval_${data.participant.id}_${Date.now()}.json`;
+            
+            // Trigger download
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            
+            // Também salvar no localStorage como backup
+            localStorage.setItem('tts_eval_' + data.confirmationCode, dataStr);
+        }
+
+        // Atalhos de teclado
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('evaluationScreen').style.display === 'block') {
+                // Números 1-5 para avaliações rápidas
+                if (e.key >= '1' && e.key <= '5') {
+                    const num = e.key;
+                    // Focar na primeira pergunta sem resposta
+                    if (!document.querySelector('input[name="mos"]:checked')) {
+                        document.getElementById(`mos${num}`).click();
+                        checkMOSAndShowReference(); // Mostrar referência após selecionar MOS
+                    } else if (!document.querySelector('input[name="spksim"]:checked')) {
+                        document.getElementById(`spk${num}`).click();
+                    } else if (!document.querySelector('input[name="emosim"]:checked')) {
+                        document.getElementById(`emo${num}`).click();
+                    }
+                }
+                
+                // R para tocar áudio de referência
+                if (e.key === 'r' || e.key === 'R') {
+                    e.preventDefault();
+                    const refAudio = document.getElementById('referenceAudio');
+                    if (refAudio.paused) {
+                        refAudio.play();
+                    } else {
+                        refAudio.pause();
+                    }
+                }
+                
+                // S para tocar áudio sintetizado
+                if (e.key === 's' || e.key === 'S') {
+                    e.preventDefault();
+                    const synthAudio = document.getElementById('synthesizedAudio');
+                    if (synthAudio.paused) {
+                        synthAudio.play();
+                    } else {
+                        synthAudio.pause();
+                    }
+                }
+                
+                // Enter para próxima (se tudo preenchido)
+                if (e.key === 'Enter') {
+                    const allFilled = document.querySelector('input[name="mos"]:checked') &&
+                                    document.querySelector('input[name="spksim"]:checked') &&
+                                    document.querySelector('input[name="emosim"]:checked');
+                    if (allFilled) {
+                        nextSample();
+                    }
+                }
+            }
+        });
+
+        // Prevenir fechamento acidental da página
+        window.addEventListener('beforeunload', (e) => {
+            if (document.getElementById('evaluationScreen').style.display === 'block') {
+                e.preventDefault();
+                e.returnValue = 'Você tem uma avaliação em andamento. Tem certeza que deseja sair?';
+            }
+        });
+    </script>
+</body>
+</html>
