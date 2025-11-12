@@ -11,3 +11,5 @@ results
 # Virtual environments
 .venv
 .DS_Store
+
+*.zip

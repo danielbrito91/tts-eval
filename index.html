@@ -90,7 +90,7 @@
             color: #333;
         }
         
-        .conversion-type {
+        .language-badge {
             background: #e3f2fd;
             padding: 6px 16px;
             border-radius: 20px;
@@ -440,7 +440,7 @@
                 <li><strong>Similaridade da Emoção:</strong> O quão bem a emoção foi preservada comparando o áudio de referência com o sintetizado.</li>
             </ul>
             
-            <p>O teste consiste em 32 amostras e leva aproximadamente 20-25 minutos.</p>
+            <p>O teste consiste em 40 amostras e leva aproximadamente 25-30 minutos.</p>
             
             <div class="participant-form">
                 <div class="form-group">
@@ -465,8 +465,8 @@
             
             <div class="progress-container">
                 <div class="progress-info">
-                    <span>Amostra <strong id="currentSample">1</strong> de <strong id="totalSamples">32</strong></span>
-                    <span id="timeEstimate">~20 min restantes</span>
+                    <span>Amostra <strong id="currentSample">1</strong> de <strong id="totalSamples">40</strong></span>
+                    <span id="timeEstimate">~25 min restantes</span>
                 </div>
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressBar"></div>
@@ -476,7 +476,7 @@
             <div class="audio-container">
                 <div class="audio-header">
                     <div class="audio-title">Amostra de Avaliação</div>
-                    <div class="conversion-type" id="conversionType">-</div>
+                    <div class="language-badge" id="languageBadge">-</div>
                 </div>
                 
                 <!-- Áudios de Referência -->
@@ -647,45 +647,61 @@
     <script>
         // Configuração das amostras - BLIND (sem revelar modelo ou emoção)
         const audioSamples = [
-            // Emotion-based samples with RAVDESS codes
-            {id: 1, synth: "03-01-05-01-01-01-01_angry", ref: "03-01-05-01-01-01-01_angry.wav", type: "EN→PT", emotion: "Raiva", model: "VECL", speaker: "ravdess"},
-            {id: 2, synth: "03-01-05-01-01-01-01_angry", ref: "03-01-05-01-01-01-01_angry.wav", type: "EN→PT", emotion: "Raiva", model: "CML", speaker: "ravdess"},
-            {id: 3, synth: "03-01-04-01-01-02-04_sad", ref: "03-01-04-01-01-02-04_sad.wav", type: "EN→PT", emotion: "Tristeza", model: "VECL", speaker: "ravdess"},
-            {id: 4, synth: "03-01-04-01-01-02-04_sad", ref: "03-01-04-01-01-02-04_sad.wav", type: "EN→PT", emotion: "Tristeza", model: "CML", speaker: "ravdess"},
-            {id: 5, synth: "03-01-03-01-01-02-22_happy", ref: "03-01-03-01-01-02-22_happy.wav", type: "EN→PT", emotion: "Alegria", model: "VECL", speaker: "ravdess"},
-            {id: 6, synth: "03-01-03-01-01-02-22_happy", ref: "03-01-03-01-01-02-22_happy.wav", type: "EN→PT", emotion: "Alegria", model: "CML", speaker: "ravdess"},
-            {id: 7, synth: "03-01-01-01-01-01-15_neutral", ref: "03-01-01-01-01-01-15_neutral.wav", type: "EN→PT", emotion: "Neutro", model: "VECL", speaker: "ravdess"},
-            {id: 8, synth: "03-01-01-01-01-01-15_neutral", ref: "03-01-01-01-01-01-15_neutral.wav", type: "EN→PT", emotion: "Neutro", model: "CML", speaker: "ravdess"},
+            // Angry Female EN - 5 models
+            {id: 1, synth: "default_angry_female_en_sent2.wav", ref: "angry_female_en.wav", folder: "default", emotion: "Raiva", gender: "Feminino", language: "EN", model: "Default"},
+            {id: 2, synth: "finetuned_angry_female_en_sent4.wav", ref: "angry_female_en.wav", folder: "finetuned", emotion: "Raiva", gender: "Feminino", language: "EN", model: "Finetuned"},
+            {id: 3, synth: "finetuned_token_angry_female_en_sent3.wav", ref: "angry_female_en.wav", folder: "finetuned_token", emotion: "Raiva", gender: "Feminino", language: "EN", model: "Finetuned+Token"},
+            {id: 4, synth: "vecl_angry_female_en_sent5.wav", ref: "angry_female_en.wav", folder: "vecl", emotion: "Raiva", gender: "Feminino", language: "EN", model: "VECL"},
+            {id: 5, synth: "vecl_alpha_angry_female_en_sent1.wav", ref: "angry_female_en.wav", folder: "vecl_alpha", emotion: "Raiva", gender: "Feminino", language: "EN", model: "VECL-Alpha"},
             
-            // Speaker-based samples - Cross-language (PT→EN)
-            {id: 9, synth: "ale-f1-l5", ref: "ale-f1-l5.wav", type: "PT→EN", emotion: "Neutro", model: "VECL", speaker: "ale-f1-l5"},
-            {id: 10, synth: "ale-f1-l5", ref: "ale-f1-l5.wav", type: "PT→EN", emotion: "Neutro", model: "CML", speaker: "ale-f1-l5"},
-            {id: 11, synth: "neu-m5-q2", ref: "neu-m5-q2.wav", type: "PT→EN", emotion: "Neutro", model: "VECL", speaker: "neu-m5-q2"},
-            {id: 12, synth: "neu-m5-q2", ref: "neu-m5-q2.wav", type: "PT→EN", emotion: "Neutro", model: "CML", speaker: "neu-m5-q2"},
-            {id: 13, synth: "rai-m1-l1", ref: "rai-m1-l1.wav", type: "PT→EN", emotion: "Neutro", model: "VECL", speaker: "rai-m1-l1"},
-            {id: 14, synth: "rai-m1-l1", ref: "rai-m1-l1.wav", type: "PT→EN", emotion: "Neutro", model: "CML", speaker: "rai-m1-l1"},
-            {id: 15, synth: "tri-f4-l3", ref: "tri-f4-l3.wav", type: "PT→EN", emotion: "Neutro", model: "VECL", speaker: "tri-f4-l3"},
-            {id: 16, synth: "tri-f4-l3", ref: "tri-f4-l3.wav", type: "PT→EN", emotion: "Neutro", model: "CML", speaker: "tri-f4-l3"},
+            // Angry Male PT - 5 models
+            {id: 6, synth: "default_angry_male_pt_sent1.wav", ref: "angry_male_pt.wav", folder: "default", emotion: "Raiva", gender: "Masculino", language: "PT", model: "Default"},
+            {id: 7, synth: "finetuned_angry_male_pt_sent5.wav", ref: "angry_male_pt.wav", folder: "finetuned", emotion: "Raiva", gender: "Masculino", language: "PT", model: "Finetuned"},
+            {id: 8, synth: "finetuned_token_angry_male_pt_sent1.wav", ref: "angry_male_pt.wav", folder: "finetuned_token", emotion: "Raiva", gender: "Masculino", language: "PT", model: "Finetuned+Token"},
+            {id: 9, synth: "vecl_angry_male_pt_sent2.wav", ref: "angry_male_pt.wav", folder: "vecl", emotion: "Raiva", gender: "Masculino", language: "PT", model: "VECL"},
+            {id: 10, synth: "vecl_alpha_angry_male_pt_sent2.wav", ref: "angry_male_pt.wav", folder: "vecl_alpha", emotion: "Raiva", gender: "Masculino", language: "PT", model: "VECL-Alpha"},
             
-            // Same-language samples (PT→PT)
-            {id: 17, synth: "ale-f1-l5", ref: "ale-f1-l5.wav", type: "PT→PT", emotion: "Neutro", model: "VECL", speaker: "ale-f1-l5"},
-            {id: 18, synth: "ale-f1-l5", ref: "ale-f1-l5.wav", type: "PT→PT", emotion: "Neutro", model: "CML", speaker: "ale-f1-l5"},
-            {id: 19, synth: "neu-m5-q2", ref: "neu-m5-q2.wav", type: "PT→PT", emotion: "Neutro", model: "VECL", speaker: "neu-m5-q2"},
-            {id: 20, synth: "neu-m5-q2", ref: "neu-m5-q2.wav", type: "PT→PT", emotion: "Neutro", model: "CML", speaker: "neu-m5-q2"},
-            {id: 21, synth: "rai-m1-l1", ref: "rai-m1-l1.wav", type: "PT→PT", emotion: "Neutro", model: "VECL", speaker: "rai-m1-l1"},
-            {id: 22, synth: "rai-m1-l1", ref: "rai-m1-l1.wav", type: "PT→PT", emotion: "Neutro", model: "CML", speaker: "rai-m1-l1"},
-            {id: 23, synth: "tri-f4-l3", ref: "tri-f4-l3.wav", type: "PT→PT", emotion: "Neutro", model: "VECL", speaker: "tri-f4-l3"},
-            {id: 24, synth: "tri-f4-l3", ref: "tri-f4-l3.wav", type: "PT→PT", emotion: "Neutro", model: "CML", speaker: "tri-f4-l3"},
+            // Happy Female EN - 5 models
+            {id: 11, synth: "default_happy_female_en_sent4.wav", ref: "happy_female_en.wav", folder: "default", emotion: "Alegria", gender: "Feminino", language: "EN", model: "Default"},
+            {id: 12, synth: "finetuned_happy_female_en_sent3.wav", ref: "happy_female_en.wav", folder: "finetuned", emotion: "Alegria", gender: "Feminino", language: "EN", model: "Finetuned"},
+            {id: 13, synth: "finetuned_token_happy_female_en_sent5.wav", ref: "happy_female_en.wav", folder: "finetuned_token", emotion: "Alegria", gender: "Feminino", language: "EN", model: "Finetuned+Token"},
+            {id: 14, synth: "vecl_happy_female_en_sent3.wav", ref: "happy_female_en.wav", folder: "vecl", emotion: "Alegria", gender: "Feminino", language: "EN", model: "VECL"},
+            {id: 15, synth: "vecl_alpha_happy_female_en_sent4.wav", ref: "happy_female_en.wav", folder: "vecl_alpha", emotion: "Alegria", gender: "Feminino", language: "EN", model: "VECL-Alpha"},
             
-            // Emotion samples with same-language
-            {id: 25, synth: "03-01-05-01-01-01-01_angry", ref: "03-01-05-01-01-01-01_angry.wav", type: "EN→EN", emotion: "Raiva", model: "VECL", speaker: "ravdess"},
-            {id: 26, synth: "03-01-05-01-01-01-01_angry", ref: "03-01-05-01-01-01-01_angry.wav", type: "EN→EN", emotion: "Raiva", model: "CML", speaker: "ravdess"},
-            {id: 27, synth: "03-01-04-01-01-02-04_sad", ref: "03-01-04-01-01-02-04_sad.wav", type: "EN→EN", emotion: "Tristeza", model: "VECL", speaker: "ravdess"},
-            {id: 28, synth: "03-01-04-01-01-02-04_sad", ref: "03-01-04-01-01-02-04_sad.wav", type: "EN→EN", emotion: "Tristeza", model: "CML", speaker: "ravdess"},
-            {id: 29, synth: "03-01-03-01-01-02-22_happy", ref: "03-01-03-01-01-02-22_happy.wav", type: "EN→EN", emotion: "Alegria", model: "VECL", speaker: "ravdess"},
-            {id: 30, synth: "03-01-03-01-01-02-22_happy", ref: "03-01-03-01-01-02-22_happy.wav", type: "EN→EN", emotion: "Alegria", model: "CML", speaker: "ravdess"},
-            {id: 31, synth: "03-01-01-01-01-01-15_neutral", ref: "03-01-01-01-01-01-15_neutral.wav", type: "EN→EN", emotion: "Neutro", model: "VECL", speaker: "ravdess"},
-            {id: 32, synth: "03-01-01-01-01-01-15_neutral", ref: "03-01-01-01-01-01-15_neutral.wav", type: "EN→EN", emotion: "Neutro", model: "CML", speaker: "ravdess"}
+            // Happy Male PT - 5 models
+            {id: 16, synth: "default_happy_male_pt_sent5.wav", ref: "happy_male_pt.wav", folder: "default", emotion: "Alegria", gender: "Masculino", language: "PT", model: "Default"},
+            {id: 17, synth: "finetuned_happy_male_pt_sent1.wav", ref: "happy_male_pt.wav", folder: "finetuned", emotion: "Alegria", gender: "Masculino", language: "PT", model: "Finetuned"},
+            {id: 18, synth: "finetuned_token_happy_male_pt_sent3.wav", ref: "happy_male_pt.wav", folder: "finetuned_token", emotion: "Alegria", gender: "Masculino", language: "PT", model: "Finetuned+Token"},
+            {id: 19, synth: "vecl_happy_male_pt_sent5.wav", ref: "happy_male_pt.wav", folder: "vecl", emotion: "Alegria", gender: "Masculino", language: "PT", model: "VECL"},
+            {id: 20, synth: "vecl_alpha_happy_male_pt_sent3.wav", ref: "happy_male_pt.wav", folder: "vecl_alpha", emotion: "Alegria", gender: "Masculino", language: "PT", model: "VECL-Alpha"},
+            
+            // Neutral Female EN - 5 models
+            {id: 21, synth: "default_neutral_female_en_sent1.wav", ref: "neutral_female_en.wav", folder: "default", emotion: "Neutro", gender: "Feminino", language: "EN", model: "Default"},
+            {id: 22, synth: "finetuned_neutral_female_en_sent2.wav", ref: "neutral_female_en.wav", folder: "finetuned", emotion: "Neutro", gender: "Feminino", language: "EN", model: "Finetuned"},
+            {id: 23, synth: "finetuned_token_neutral_female_en_sent2.wav", ref: "neutral_female_en.wav", folder: "finetuned_token", emotion: "Neutro", gender: "Feminino", language: "EN", model: "Finetuned+Token"},
+            {id: 24, synth: "vecl_neutral_female_en_sent1.wav", ref: "neutral_female_en.wav", folder: "vecl", emotion: "Neutro", gender: "Feminino", language: "EN", model: "VECL"},
+            {id: 25, synth: "vecl_alpha_neutral_female_en_sent5.wav", ref: "neutral_female_en.wav", folder: "vecl_alpha", emotion: "Neutro", gender: "Feminino", language: "EN", model: "VECL-Alpha"},
+            
+            // Neutral Male PT - 5 models
+            {id: 26, synth: "default_neutral_male_pt_sent2.wav", ref: "neutral_male_pt.wav", folder: "default", emotion: "Neutro", gender: "Masculino", language: "PT", model: "Default"},
+            {id: 27, synth: "finetuned_neutral_male_pt_sent4.wav", ref: "neutral_male_pt.wav", folder: "finetuned", emotion: "Neutro", gender: "Masculino", language: "PT", model: "Finetuned"},
+            {id: 28, synth: "finetuned_token_neutral_male_pt_sent4.wav", ref: "neutral_male_pt.wav", folder: "finetuned_token", emotion: "Neutro", gender: "Masculino", language: "PT", model: "Finetuned+Token"},
+            {id: 29, synth: "vecl_neutral_male_pt_sent4.wav", ref: "neutral_male_pt.wav", folder: "vecl", emotion: "Neutro", gender: "Masculino", language: "PT", model: "VECL"},
+            {id: 30, synth: "vecl_alpha_neutral_male_pt_sent5.wav", ref: "neutral_male_pt.wav", folder: "vecl_alpha", emotion: "Neutro", gender: "Masculino", language: "PT", model: "VECL-Alpha"},
+            
+            // Sad Female EN - 5 models
+            {id: 31, synth: "default_sad_female_en_sent3.wav", ref: "sad_female_en.wav", folder: "default", emotion: "Tristeza", gender: "Feminino", language: "EN", model: "Default"},
+            {id: 32, synth: "finetuned_sad_female_en_sent2.wav", ref: "sad_female_en.wav", folder: "finetuned", emotion: "Tristeza", gender: "Feminino", language: "EN", model: "Finetuned"},
+            {id: 33, synth: "finetuned_token_sad_female_en_sent3.wav", ref: "sad_female_en.wav", folder: "finetuned_token", emotion: "Tristeza", gender: "Feminino", language: "EN", model: "Finetuned+Token"},
+            {id: 34, synth: "vecl_sad_female_en_sent5.wav", ref: "sad_female_en.wav", folder: "vecl", emotion: "Tristeza", gender: "Feminino", language: "EN", model: "VECL"},
+            {id: 35, synth: "vecl_alpha_sad_female_en_sent2.wav", ref: "sad_female_en.wav", folder: "vecl_alpha", emotion: "Tristeza", gender: "Feminino", language: "EN", model: "VECL-Alpha"},
+            
+            // Sad Male PT - 5 models
+            {id: 36, synth: "default_sad_male_pt_sent2.wav", ref: "sad_male_pt.wav", folder: "default", emotion: "Tristeza", gender: "Masculino", language: "PT", model: "Default"},
+            {id: 37, synth: "finetuned_sad_male_pt_sent4.wav", ref: "sad_male_pt.wav", folder: "finetuned", emotion: "Tristeza", gender: "Masculino", language: "PT", model: "Finetuned"},
+            {id: 38, synth: "finetuned_token_sad_male_pt_sent1.wav", ref: "sad_male_pt.wav", folder: "finetuned_token", emotion: "Tristeza", gender: "Masculino", language: "PT", model: "Finetuned+Token"},
+            {id: 39, synth: "vecl_sad_male_pt_sent2.wav", ref: "sad_male_pt.wav", folder: "vecl", emotion: "Tristeza", gender: "Masculino", language: "PT", model: "VECL"},
+            {id: 40, synth: "vecl_alpha_sad_male_pt_sent1.wav", ref: "sad_male_pt.wav", folder: "vecl_alpha", emotion: "Tristeza", gender: "Masculino", language: "PT", model: "VECL-Alpha"}
         ];
 
         // Variáveis globais
@@ -739,7 +755,7 @@
             
             // Atualizar informações
             document.getElementById('currentSample').textContent = index + 1;
-            document.getElementById('conversionType').textContent = sample.type;
+            document.getElementById('languageBadge').textContent = sample.language;
             
             // Construir caminhos dos áudios
             const audioBasePath = 'audio/';
@@ -747,28 +763,8 @@
             // Áudio de referência (sempre na pasta refs/)
             const referencePath = audioBasePath + 'refs/' + sample.ref;
             
-            // Áudio sintetizado - construir nome do arquivo baseado no modelo e tipo
-            let synthFileName = sample.synth;
-            let synthFolder = sample.model.toLowerCase(); // 'vecl' ou 'cml'
-            
-            // Determinar sufixo baseado no tipo de conversão
-            let languageSuffix = '';
-            if (sample.type === 'PT→EN' || sample.type === 'EN→PT') {
-                languageSuffix = '_cross-language';
-            } else {
-                languageSuffix = '_same-language';
-            }
-            
-            // Construir nome completo do arquivo
-            let synthFileExtension = '';
-            if (synthFolder === 'cml') {
-                synthFileExtension = '.wav.wav'; // CML tem extensão dupla
-            } else {
-                synthFileExtension = '.wav'; // VECL tem extensão simples
-            }
-            
-            const synthFileName_full = synthFileName + languageSuffix + synthFileExtension;
-            const synthPath = audioBasePath + synthFolder + '/' + synthFileName_full;
+            // Áudio sintetizado - usar folder e synth diretamente
+            const synthPath = audioBasePath + sample.folder + '/' + sample.synth;
             
             // Carregar áudios
             document.getElementById('referenceAudio').src = referencePath;
@@ -844,11 +840,13 @@
             evaluationResults.push({
                 sampleId: sample.id,
                 presentationOrder: currentIndex + 1,
-                type: sample.type,
                 // Informações ocultas (para análise posterior)
                 hiddenData: {
                     emotion: sample.emotion,
+                    gender: sample.gender,
+                    language: sample.language,
                     model: sample.model,
+                    folder: sample.folder,
                     synthFile: sample.synth,
                     refFile: sample.ref
                 },
