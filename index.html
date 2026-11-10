@@ -3,14 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avaliação TTS - Sistema de Coleta</title>
+    <title>Avaliação de Fala Sintetizada</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: #f0f2f5;
@@ -18,1023 +14,1017 @@
             line-height: 1.6;
             color: #333;
         }
-        
+
         .container {
-            max-width: 900px;
+            max-width: 860px;
             margin: 0 auto;
             background: white;
-            padding: 40px;
+            padding: 36px;
             border-radius: 16px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
-        
-        h1 {
-            color: #1a1a1a;
-            margin-bottom: 10px;
-            text-align: center;
-            font-size: 28px;
-        }
-        
-        .subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 16px;
-        }
-        
-        .progress-container {
-            margin-bottom: 30px;
-        }
-        
-        .progress-info {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 14px;
-            color: #666;
-        }
-        
-        .progress-bar {
-            width: 100%;
-            height: 10px;
-            background: #e0e0e0;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #4CAF50, #66BB6A);
-            transition: width 0.3s ease;
-            border-radius: 5px;
-        }
-        
-        .audio-container {
+
+        h1 { color: #1a1a1a; margin-bottom: 8px; text-align: center; font-size: 26px; }
+        h2 { color: #1a1a1a; margin-bottom: 16px; font-size: 20px; }
+        .subtitle { text-align: center; color: #666; margin-bottom: 24px; font-size: 15px; }
+
+        .progress-container { margin-bottom: 24px; }
+        .progress-info { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 14px; color: #666; }
+        .progress-bar { width: 100%; height: 10px; background: #e0e0e0; border-radius: 5px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #4CAF50, #66BB6A); transition: width 0.3s ease; border-radius: 5px; }
+
+        .item-card {
             background: #f8f9fa;
-            padding: 25px;
+            padding: 20px;
             border-radius: 12px;
-            margin-bottom: 30px;
+            margin-bottom: 22px;
             border: 1px solid #e0e0e0;
-        }
-        
-        .audio-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        
-        .audio-title {
-            font-weight: 600;
-            font-size: 18px;
-            color: #333;
-        }
-        
-        .language-badge {
-            background: #e3f2fd;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 14px;
-            color: #1976d2;
-            font-weight: 500;
-        }
-        
-        .reference-section {
-            background: #fff3e0;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ffe0b2;
-        }
-        
-        .reference-label {
-            font-weight: 500;
-            color: #e65100;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .reference-icon {
-            width: 20px;
-            height: 20px;
-            background: #ff6f00;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 12px;
-            font-weight: bold;
-        }
-        
-        .synthesis-section {
-            background: #e8f5e9;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 25px;
-            border: 1px solid #c8e6c9;
-        }
-        
-        .synthesis-label {
-            font-weight: 500;
-            color: #2e7d32;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .synthesis-icon {
-            width: 20px;
-            height: 20px;
-            background: #388e3c;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 12px;
-            font-weight: bold;
-        }
-        
-        audio {
-            width: 100%;
-            margin-top: 10px;
-            height: 48px;
-        }
-        
-        .evaluation-section {
-            margin-bottom: 30px;
-            padding: 20px;
-            background: #fafafa;
-            border-radius: 10px;
-            border: 1px solid #e0e0e0;
-        }
-        
-        .eval-title {
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: #333;
-            font-size: 16px;
-        }
-        
-        .eval-description {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-        
-        .rating-group {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        
-        .rating-option {
-            position: relative;
-            flex: 1;
-            min-width: 70px;
-            max-width: 90px;
-        }
-        
-        .rating-option input[type="radio"] {
-            position: absolute;
-            opacity: 0;
-        }
-        
-        .rating-label {
-            display: block;
-            padding: 15px 10px;
-            background: white;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-align: center;
-            font-weight: 500;
-            font-size: 18px;
-        }
-        
-        .rating-option input[type="radio"]:checked + .rating-label {
-            background: #4CAF50;
-            color: white;
-            border-color: #45a049;
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
-        }
-        
-        .rating-label:hover {
-            border-color: #bdbdbd;
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
-        .rating-option input[type="radio"]:checked + .rating-label:hover {
-            border-color: #45a049;
-        }
-        
-        .scale-info {
-            font-size: 13px;
-            color: #666;
-            text-align: center;
-            margin-top: 10px;
-            display: flex;
-            justify-content: space-between;
-            padding: 0 10px;
-        }
-        
-        .navigation {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 40px;
-            gap: 15px;
-        }
-        
-        button {
-            padding: 14px 28px;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .btn-prev {
-            background: #f5f5f5;
-            color: #666;
-        }
-        
-        .btn-prev:hover:not(:disabled) {
-            background: #e0e0e0;
-            transform: translateX(-2px);
-        }
-        
-        .btn-next {
-            background: #2196F3;
-            color: white;
-            margin-left: auto;
-        }
-        
-        .btn-next:hover {
-            background: #1976D2;
-            transform: translateX(2px);
-            box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
-        }
-        
-        .btn-submit {
-            background: #4CAF50;
-            color: white;
-            margin-left: auto;
-        }
-        
-        .btn-submit:hover {
-            background: #45a049;
-            box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
-        }
-        
-        button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none !important;
-        }
-        
-        .intro-screen, .finish-screen {
-            text-align: center;
-            padding: 20px;
-        }
-        
-        .intro-screen h2 {
-            margin-bottom: 25px;
-            color: #1a1a1a;
-        }
-        
-        .intro-screen p {
-            margin-bottom: 20px;
-            color: #666;
-            line-height: 1.8;
-        }
-        
-        .intro-list {
-            text-align: left;
-            max-width: 600px;
-            margin: 30px auto;
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 12px;
-        }
-        
-        .intro-list li {
-            margin-bottom: 15px;
-            color: #444;
-        }
-        
-        .participant-form {
-            margin: 30px 0;
-            text-align: left;
-            max-width: 400px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: #444;
-        }
-        
-        .form-group input {
-            width: 100%;
-            padding: 12px 16px;
-            font-size: 16px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            transition: border-color 0.2s;
-        }
-        
-        .form-group input:focus {
-            outline: none;
-            border-color: #2196F3;
-        }
-        
-        .finish-message {
-            font-size: 18px;
-            color: #4CAF50;
-            margin-bottom: 30px;
-        }
-        
-        .warning {
-            background: #fff3cd;
-            border: 1px solid #ffeaa7;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            color: #856404;
-            font-size: 14px;
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                padding: 25px;
-            }
-            
-            .rating-group {
-                gap: 8px;
-            }
-            
-            .rating-option {
-                min-width: 60px;
-            }
-            
-            .rating-label {
-                padding: 12px 8px;
-                font-size: 16px;
-            }
-        }
-        
-        /* Animações */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .audio-container {
             animation: fadeIn 0.3s ease-out;
         }
+        .item-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .item-title { font-weight: 600; font-size: 16px; color: #333; }
+        .emotion-badge { background: #ede7f6; padding: 5px 14px; border-radius: 20px; font-size: 14px; color: #4527a0; font-weight: 600; }
+        .lang-badge { background: #e3f2fd; padding: 4px 12px; border-radius: 20px; font-size: 13px; color: #1976d2; font-weight: 500; margin-right: 8px; }
+
+        audio { width: 100%; margin-top: 6px; height: 44px; }
+
+        .question { margin-top: 16px; padding: 14px 16px; background: #fff; border-radius: 10px; border: 1px solid #e6e6e6; }
+        .q-text { font-weight: 500; margin-bottom: 10px; font-size: 15px; }
+        .q-text .emo { font-weight: 700; color: #4527a0; }
+
+        .rating-group { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+        .rating-option { position: relative; flex: 1; min-width: 58px; max-width: 130px; }
+        .rating-option input[type="radio"] { position: absolute; opacity: 0; }
+        .rating-label {
+            display: block; padding: 10px 6px; background: white; border: 2px solid #e0e0e0;
+            border-radius: 10px; cursor: pointer; transition: all 0.15s; text-align: center;
+            font-weight: 600; font-size: 17px; line-height: 1.2;
+        }
+        .rating-label small { display: block; font-size: 11px; font-weight: 500; color: #777; margin-top: 3px; }
+        .rating-option input[type="radio"]:checked + .rating-label {
+            background: #4CAF50; color: white; border-color: #45a049;
+            transform: translateY(-2px); box-shadow: 0 4px 12px rgba(76,175,80,0.3);
+        }
+        .rating-option input[type="radio"]:checked + .rating-label small { color: #e8f5e9; }
+        .rating-label:hover { border-color: #bdbdbd; }
+        .scale-info { font-size: 12px; color: #666; margin-top: 8px; display: flex; justify-content: space-between; padding: 0 6px; }
+
+        .pair-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px; }
+        .pair-cell { background: #fff; border: 1px solid #e6e6e6; border-radius: 10px; padding: 12px; }
+        .pair-cell .pair-name { font-weight: 700; margin-bottom: 4px; }
+        .pair-choice { display: flex; gap: 12px; margin-top: 14px; }
+        .choice-btn {
+            flex: 1; padding: 14px; border: 2px solid #e0e0e0; border-radius: 10px; background: white;
+            font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.15s; color: #333;
+        }
+        .choice-btn.selected { background: #4CAF50; color: white; border-color: #45a049; }
+        .choice-btn:hover:not(.selected) { border-color: #bdbdbd; }
+
+        .navigation { display: flex; justify-content: flex-end; margin-top: 28px; gap: 15px; }
+        button.nav { padding: 13px 26px; border: none; border-radius: 10px; font-size: 16px; cursor: pointer; font-weight: 600; }
+        .btn-next { background: #2196F3; color: white; }
+        .btn-next:hover { background: #1976D2; }
+        .btn-submit { background: #4CAF50; color: white; }
+        .btn-submit:hover { background: #45a049; }
+        button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .center-screen { text-align: center; padding: 12px; }
+        .center-screen p { margin-bottom: 16px; color: #555; }
+        .info-list { text-align: left; max-width: 620px; margin: 22px auto; background: #f8f9fa; padding: 22px 22px 22px 40px; border-radius: 12px; }
+        .info-list li { margin-bottom: 10px; color: #444; }
+
+        .form-block { margin: 22px auto; text-align: left; max-width: 460px; }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; margin-bottom: 6px; font-weight: 500; color: #444; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 11px 14px; font-size: 15px; border: 2px solid #e0e0e0; border-radius: 8px; background: white;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #2196F3; }
+        .check-group { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 14px; text-align: left; }
+        .check-group input { width: 18px; height: 18px; margin-top: 4px; flex-shrink: 0; }
+        .check-group label { font-size: 14px; color: #444; }
+
+        .warning { background: #fff3cd; border: 1px solid #ffeaa7; padding: 14px; border-radius: 8px; margin-bottom: 18px; color: #856404; font-size: 14px; }
+        .notice { background: #e3f2fd; border: 1px solid #bbdefb; padding: 14px; border-radius: 8px; margin-bottom: 18px; color: #0d47a1; font-size: 14px; }
+        .error-box { background: #ffebee; border: 1px solid #ffcdd2; padding: 14px; border-radius: 8px; margin: 14px 0; color: #b71c1c; font-size: 14px; display: none; }
+        .debug-banner { background: #fce4ec; border: 1px dashed #e91e63; color: #880e4f; padding: 8px 12px; border-radius: 8px; font-size: 12px; margin-bottom: 14px; }
+
+        .block-header { text-align: center; margin-bottom: 18px; }
+        .block-header .lang-badge { font-size: 14px; }
+
+        @media (max-width: 700px) {
+            .container { padding: 20px; }
+            .pair-grid { grid-template-columns: 1fr; }
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Tela Inicial -->
-        <div id="introScreen" class="intro-screen">
-            <h1>Sistema de Avaliação TTS</h1>
-            <p class="subtitle">Avaliação de Qualidade de Síntese de Voz Cross-Lingual</p>
-            
-            <div class="warning">
-                <strong>⚠️ Importante:</strong> Use fones de ouvido para melhor qualidade de avaliação.
+        <div id="debugBanner" class="debug-banner" style="display:none;"></div>
+        <div class="progress-container" id="progressContainer" style="display:none;">
+            <div class="progress-info">
+                <span id="progressLabel"></span>
+                <span id="timeEstimate"></span>
             </div>
-            
-            <p>Você participará de uma avaliação de sistemas de síntese de voz. Para cada amostra, você deverá avaliar três aspectos:</p>
-            
-            <ul class="intro-list">
-                <li><strong>Qualidade Geral (MOS):</strong> O quão natural e agradável é o áudio sintetizado, considerando clareza, prosódia e ausência de artefatos. <em>(Avalie primeiro sem ouvir a referência)</em></li>
-                <li><strong>Similaridade do Falante:</strong> O quão similar é a voz sintetizada comparada com a voz de referência do mesmo falante.</li>
-                <li><strong>Similaridade da Emoção:</strong> O quão bem a emoção foi preservada comparando o áudio de referência com o sintetizado.</li>
-            </ul>
-            
-            <p>O teste consiste em 40 amostras e leva aproximadamente 25-30 minutos.</p>
-            
-            <div class="participant-form">
-                <div class="form-group">
-                    <label for="participantId">Código do Participante:</label>
-                    <input type="text" id="participantId" placeholder="Ex: P001" required>
-                </div>
-                <div class="form-group">
-                    <label for="participantAge">Idade:</label>
-                    <input type="number" id="participantAge" min="18" max="100" placeholder="Ex: 25">
-                </div>
-            </div>
-            
-            <button class="btn-next" onclick="startEvaluation()">
-                Iniciar Avaliação
-                <span>→</span>
-            </button>
+            <div class="progress-bar"><div class="progress-fill" id="progressBar"></div></div>
         </div>
-
-        <!-- Tela de Avaliação -->
-        <div id="evaluationScreen" style="display: none;">
-            <h1>Avaliação de Síntese de Voz</h1>
-            
-            <div class="progress-container">
-                <div class="progress-info">
-                    <span>Amostra <strong id="currentSample">1</strong> de <strong id="totalSamples">40</strong></span>
-                    <span id="timeEstimate">~25 min restantes</span>
-                </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" id="progressBar"></div>
-                </div>
-            </div>
-            
-            <div class="audio-container">
-                <div class="audio-header">
-                    <div class="audio-title">Amostra de Avaliação</div>
-                    <div class="language-badge" id="languageBadge">-</div>
-                </div>
-                
-                <!-- Áudios de Referência -->
-                <div class="reference-section" id="referenceSection" style="display: none;">
-                    <div class="reference-label">
-                        <span class="reference-icon">R</span>
-                        Áudio de Referência (voz e emoção originais)
-                    </div>
-                    <div class="eval-description" style="font-size: 13px; color: #e65100; font-style: italic; margin-bottom: 15px;">
-                        Use este áudio de referência para avaliar a similaridade do falante e da emoção (questões 2 e 3).
-                    </div>
-                    <audio id="referenceAudio" controls>
-                        <source src="" type="audio/wav">
-                    </audio>
-                </div>
-                
-                <!-- Áudio Sintetizado -->
-                <div class="synthesis-section">
-                    <div class="synthesis-label">
-                        <span class="synthesis-icon">S</span>
-                        Áudio Sintetizado (para avaliar)
-                    </div>
-                    <audio id="synthesizedAudio" controls>
-                        <source src="" type="audio/wav">
-                    </audio>
-                </div>
-            </div>
-            
-            <!-- Avaliação MOS -->
-            <div class="evaluation-section">
-                <div class="eval-title">1. Qualidade Geral (MOS)</div>
-                <div class="eval-description">
-                    <strong>Primeiro, ouça apenas o áudio sintetizado</strong> e avalie sua qualidade geral considerando naturalidade, clareza e ausência de artefatos. O áudio de referência aparecerá após sua resposta.
-                </div>
-                <div class="rating-group">
-                    <div class="rating-option">
-                        <input type="radio" id="mos1" name="mos" value="1" onclick="checkMOSAndShowReference()">
-                        <label class="rating-label" for="mos1">1</label>
-                    </div>
-                    <div class="rating-option">
-                        <input type="radio" id="mos2" name="mos" value="2" onclick="checkMOSAndShowReference()">
-                        <label class="rating-label" for="mos2">2</label>
-                    </div>
-                    <div class="rating-option">
-                        <input type="radio" id="mos3" name="mos" value="3" onclick="checkMOSAndShowReference()">
-                        <label class="rating-label" for="mos3">3</label>
-                    </div>
-                    <div class="rating-option">
-                        <input type="radio" id="mos4" name="mos" value="4" onclick="checkMOSAndShowReference()">
-                        <label class="rating-label" for="mos4">4</label>
-                    </div>
-                    <div class="rating-option">
-                        <input type="radio" id="mos5" name="mos" value="5" onclick="checkMOSAndShowReference()">
-                        <label class="rating-label" for="mos5">5</label>
-                    </div>
-                </div>
-                <div class="scale-info">
-                    <span>1 - Péssimo</span>
-                    <span>3 - Razoável</span>
-                    <span>5 - Excelente</span>
-                </div>
-            </div>
-            
-            <!-- Similaridade do Falante -->
-            <div class="evaluation-section">
-                <div class="eval-title">2. Similaridade do Falante</div>
-                <div class="eval-description">
-                    Compare a voz do áudio sintetizado com a voz do áudio de referência. Quão similar são as vozes?
-                </div>
-                <div class="rating-group">
-                    <div class="rating-option">
-                        <input type="radio" id="spk1" name="spksim" value="1">
-                        <label class="rating-label" for="spk1">1</label>
-                    </div>
-                    <div class="rating-option">
-                        <input type="radio" id="spk2" name="spksim" value="2">
-                        <label class="rating-label" for="spk2">2</label>
-                    </div>
-                    <div class="rating-option">
-                        <input type="radio" id="spk3" name="spksim" value="3">
-                        <label class="rating-label" for="spk3">3</label>
-                    </div>
-                    <div class="rating-option">
-                        <input type="radio" id="spk4" name="spksim" value="4">
-                        <label class="rating-label" for="spk4">4</label>
-                    </div>
-                    <div class="rating-option">
-                        <input type="radio" id="spk5" name="spksim" value="5">
-                        <label class="rating-label" for="spk5">5</label>
-                    </div>
-                </div>
-                <div class="scale-info">
-                    <span>1 - Totalmente diferente</span>
-                    <span>3 - Parcialmente similar</span>
-                    <span>5 - Idêntica</span>
-                </div>
-            </div>
-            
-            <!-- Similaridade da Emoção -->
-            <div class="evaluation-section">
-                <div class="eval-title">3. Similaridade da Emoção</div>
-                <div class="eval-description">
-                    Compare a emoção expressa no áudio sintetizado com a emoção do áudio de referência. A emoção foi preservada?
-                </div>
-                <div class="rating-group">
-                    <div class="rating-option">
-                        <input type="radio" id="emo1" name="emosim" value="1">
-                        <label class="rating-label" for="emo1">1</label>
-                    </div>
-                    <div class="rating-option">
-                        <input type="radio" id="emo2" name="emosim" value="2">
-                        <label class="rating-label" for="emo2">2</label>
-                    </div>
-                    <div class="rating-option">
-                        <input type="radio" id="emo3" name="emosim" value="3">
-                        <label class="rating-label" for="emo3">3</label>
-                    </div>
-                    <div class="rating-option">
-                        <input type="radio" id="emo4" name="emosim" value="4">
-                        <label class="rating-label" for="emo4">4</label>
-                    </div>
-                    <div class="rating-option">
-                        <input type="radio" id="emo5" name="emosim" value="5">
-                        <label class="rating-label" for="emo5">5</label>
-                    </div>
-                </div>
-                <div class="scale-info">
-                    <span>1 - Emoção não preservada</span>
-                    <span>3 - Parcialmente preservada</span>
-                    <span>5 - Perfeitamente preservada</span>
-                </div>
-            </div>
-            
-            <div class="navigation">
-                <button class="btn-prev" onclick="previousSample()" id="prevBtn">
-                    <span>←</span>
-                    Anterior
-                </button>
-                <button class="btn-next" onclick="nextSample()" id="nextBtn">
-                    Próxima
-                    <span>→</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- Tela Final -->
-        <div id="finishScreen" class="finish-screen" style="display: none;">
-            <h1>Avaliação Concluída!</h1>
-            <p class="finish-message">✅ Suas respostas foram registradas com sucesso.</p>
-            
-            <p>Obrigado por participar desta avaliação. Sua contribuição é fundamental para nossa pesquisa.</p>
-            
-            <div class="warning" style="margin-top: 30px;">
-                <strong>Código de confirmação:</strong> <span id="confirmationCode"></span><br>
-                Por favor, anote este código como comprovante de participação.
-            </div>
-        </div>
+        <div id="app"><p style="text-align:center;color:#666;">Carregando…</p></div>
     </div>
 
-    <!-- Hidden form for Netlify Forms -->
-    <form name="tts-results" netlify hidden data-netlify="true">
-        <input type="text" name="participant_id" />
-        <input type="text" name="confirmation_code" />
-        <input type="text" name="results_json" />
+    <!-- Static form so Netlify Forms detects the schema at deploy time.
+         data-netlify-honeypot: sem ele o Akismet decide sozinho e classifica
+         a sessão como spam a partir da ~5ª submissão (medido em 2026-08-16:
+         17 das 22 etapas de uma sessão real foram para o balde de spam, com
+         HTTP 200 em todas). O honeypot é o sinal documentado de "isto veio de
+         um humano": o campo fica vazio no envio real e preenchido por bot. -->
+    <form name="mos-eval" netlify hidden data-netlify="true" data-netlify-honeypot="bot-field">
+        <input type="text" name="rater_seed" />
+        <input type="text" name="kind" />
+        <input type="text" name="step_id" />
+        <input type="text" name="payload_json" />
         <input type="text" name="timestamp" />
+        <input type="text" name="ui_version" />
+        <input type="text" name="bot-field" />
     </form>
 
     <script>
-        // Configuração das amostras - BLIND (sem revelar modelo ou emoção)
-        const audioSamples = [
-            // Angry Female EN - 5 models
-            {id: 1, synth: "default_angry_female_en_sent2.wav", ref: "angry_female_en.wav", folder: "default", emotion: "Raiva", gender: "Feminino", language: "EN", model: "Default"},
-            {id: 2, synth: "finetuned_angry_female_en_sent4.wav", ref: "angry_female_en.wav", folder: "finetuned", emotion: "Raiva", gender: "Feminino", language: "EN", model: "Finetuned"},
-            {id: 3, synth: "finetuned_token_angry_female_en_sent3.wav", ref: "angry_female_en.wav", folder: "finetuned_token", emotion: "Raiva", gender: "Feminino", language: "EN", model: "Finetuned+Token"},
-            {id: 4, synth: "vecl_angry_female_en_sent5.wav", ref: "angry_female_en.wav", folder: "vecl", emotion: "Raiva", gender: "Feminino", language: "EN", model: "VECL"},
-            {id: 5, synth: "vecl_alpha_angry_female_en_sent1.wav", ref: "angry_female_en.wav", folder: "vecl_alpha", emotion: "Raiva", gender: "Feminino", language: "EN", model: "VECL-Alpha"},
-            
-            // Angry Male PT - 5 models
-            {id: 6, synth: "default_angry_male_pt_sent1.wav", ref: "angry_male_pt.wav", folder: "default", emotion: "Raiva", gender: "Masculino", language: "PT", model: "Default"},
-            {id: 7, synth: "finetuned_angry_male_pt_sent5.wav", ref: "angry_male_pt.wav", folder: "finetuned", emotion: "Raiva", gender: "Masculino", language: "PT", model: "Finetuned"},
-            {id: 8, synth: "finetuned_token_angry_male_pt_sent1.wav", ref: "angry_male_pt.wav", folder: "finetuned_token", emotion: "Raiva", gender: "Masculino", language: "PT", model: "Finetuned+Token"},
-            {id: 9, synth: "vecl_angry_male_pt_sent2.wav", ref: "angry_male_pt.wav", folder: "vecl", emotion: "Raiva", gender: "Masculino", language: "PT", model: "VECL"},
-            {id: 10, synth: "vecl_alpha_angry_male_pt_sent2.wav", ref: "angry_male_pt.wav", folder: "vecl_alpha", emotion: "Raiva", gender: "Masculino", language: "PT", model: "VECL-Alpha"},
-            
-            // Happy Female EN - 5 models
-            {id: 11, synth: "default_happy_female_en_sent4.wav", ref: "happy_female_en.wav", folder: "default", emotion: "Alegria", gender: "Feminino", language: "EN", model: "Default"},
-            {id: 12, synth: "finetuned_happy_female_en_sent3.wav", ref: "happy_female_en.wav", folder: "finetuned", emotion: "Alegria", gender: "Feminino", language: "EN", model: "Finetuned"},
-            {id: 13, synth: "finetuned_token_happy_female_en_sent5.wav", ref: "happy_female_en.wav", folder: "finetuned_token", emotion: "Alegria", gender: "Feminino", language: "EN", model: "Finetuned+Token"},
-            {id: 14, synth: "vecl_happy_female_en_sent3.wav", ref: "happy_female_en.wav", folder: "vecl", emotion: "Alegria", gender: "Feminino", language: "EN", model: "VECL"},
-            {id: 15, synth: "vecl_alpha_happy_female_en_sent4.wav", ref: "happy_female_en.wav", folder: "vecl_alpha", emotion: "Alegria", gender: "Feminino", language: "EN", model: "VECL-Alpha"},
-            
-            // Happy Male PT - 5 models
-            {id: 16, synth: "default_happy_male_pt_sent5.wav", ref: "happy_male_pt.wav", folder: "default", emotion: "Alegria", gender: "Masculino", language: "PT", model: "Default"},
-            {id: 17, synth: "finetuned_happy_male_pt_sent1.wav", ref: "happy_male_pt.wav", folder: "finetuned", emotion: "Alegria", gender: "Masculino", language: "PT", model: "Finetuned"},
-            {id: 18, synth: "finetuned_token_happy_male_pt_sent3.wav", ref: "happy_male_pt.wav", folder: "finetuned_token", emotion: "Alegria", gender: "Masculino", language: "PT", model: "Finetuned+Token"},
-            {id: 19, synth: "vecl_happy_male_pt_sent5.wav", ref: "happy_male_pt.wav", folder: "vecl", emotion: "Alegria", gender: "Masculino", language: "PT", model: "VECL"},
-            {id: 20, synth: "vecl_alpha_happy_male_pt_sent3.wav", ref: "happy_male_pt.wav", folder: "vecl_alpha", emotion: "Alegria", gender: "Masculino", language: "PT", model: "VECL-Alpha"},
-            
-            // Neutral Female EN - 5 models
-            {id: 21, synth: "default_neutral_female_en_sent1.wav", ref: "neutral_female_en.wav", folder: "default", emotion: "Neutro", gender: "Feminino", language: "EN", model: "Default"},
-            {id: 22, synth: "finetuned_neutral_female_en_sent2.wav", ref: "neutral_female_en.wav", folder: "finetuned", emotion: "Neutro", gender: "Feminino", language: "EN", model: "Finetuned"},
-            {id: 23, synth: "finetuned_token_neutral_female_en_sent2.wav", ref: "neutral_female_en.wav", folder: "finetuned_token", emotion: "Neutro", gender: "Feminino", language: "EN", model: "Finetuned+Token"},
-            {id: 24, synth: "vecl_neutral_female_en_sent1.wav", ref: "neutral_female_en.wav", folder: "vecl", emotion: "Neutro", gender: "Feminino", language: "EN", model: "VECL"},
-            {id: 25, synth: "vecl_alpha_neutral_female_en_sent5.wav", ref: "neutral_female_en.wav", folder: "vecl_alpha", emotion: "Neutro", gender: "Feminino", language: "EN", model: "VECL-Alpha"},
-            
-            // Neutral Male PT - 5 models
-            {id: 26, synth: "default_neutral_male_pt_sent2.wav", ref: "neutral_male_pt.wav", folder: "default", emotion: "Neutro", gender: "Masculino", language: "PT", model: "Default"},
-            {id: 27, synth: "finetuned_neutral_male_pt_sent4.wav", ref: "neutral_male_pt.wav", folder: "finetuned", emotion: "Neutro", gender: "Masculino", language: "PT", model: "Finetuned"},
-            {id: 28, synth: "finetuned_token_neutral_male_pt_sent4.wav", ref: "neutral_male_pt.wav", folder: "finetuned_token", emotion: "Neutro", gender: "Masculino", language: "PT", model: "Finetuned+Token"},
-            {id: 29, synth: "vecl_neutral_male_pt_sent4.wav", ref: "neutral_male_pt.wav", folder: "vecl", emotion: "Neutro", gender: "Masculino", language: "PT", model: "VECL"},
-            {id: 30, synth: "vecl_alpha_neutral_male_pt_sent5.wav", ref: "neutral_male_pt.wav", folder: "vecl_alpha", emotion: "Neutro", gender: "Masculino", language: "PT", model: "VECL-Alpha"},
-            
-            // Sad Female EN - 5 models
-            {id: 31, synth: "default_sad_female_en_sent3.wav", ref: "sad_female_en.wav", folder: "default", emotion: "Tristeza", gender: "Feminino", language: "EN", model: "Default"},
-            {id: 32, synth: "finetuned_sad_female_en_sent2.wav", ref: "sad_female_en.wav", folder: "finetuned", emotion: "Tristeza", gender: "Feminino", language: "EN", model: "Finetuned"},
-            {id: 33, synth: "finetuned_token_sad_female_en_sent3.wav", ref: "sad_female_en.wav", folder: "finetuned_token", emotion: "Tristeza", gender: "Feminino", language: "EN", model: "Finetuned+Token"},
-            {id: 34, synth: "vecl_sad_female_en_sent5.wav", ref: "sad_female_en.wav", folder: "vecl", emotion: "Tristeza", gender: "Feminino", language: "EN", model: "VECL"},
-            {id: 35, synth: "vecl_alpha_sad_female_en_sent2.wav", ref: "sad_female_en.wav", folder: "vecl_alpha", emotion: "Tristeza", gender: "Feminino", language: "EN", model: "VECL-Alpha"},
-            
-            // Sad Male PT - 5 models
-            {id: 36, synth: "default_sad_male_pt_sent2.wav", ref: "sad_male_pt.wav", folder: "default", emotion: "Tristeza", gender: "Masculino", language: "PT", model: "Default"},
-            {id: 37, synth: "finetuned_sad_male_pt_sent4.wav", ref: "sad_male_pt.wav", folder: "finetuned", emotion: "Tristeza", gender: "Masculino", language: "PT", model: "Finetuned"},
-            {id: 38, synth: "finetuned_token_sad_male_pt_sent1.wav", ref: "sad_male_pt.wav", folder: "finetuned_token", emotion: "Tristeza", gender: "Masculino", language: "PT", model: "Finetuned+Token"},
-            {id: 39, synth: "vecl_sad_male_pt_sent2.wav", ref: "sad_male_pt.wav", folder: "vecl", emotion: "Tristeza", gender: "Masculino", language: "PT", model: "VECL"},
-            {id: 40, synth: "vecl_alpha_sad_male_pt_sent1.wav", ref: "sad_male_pt.wav", folder: "vecl_alpha", emotion: "Tristeza", gender: "Masculino", language: "PT", model: "VECL-Alpha"}
-        ];
+    "use strict";
 
-        // Variáveis globais
-        let currentIndex = 0;
-        let evaluationResults = [];
-        let participantData = {};
-        let shuffledSamples = [];
-        let startTime;
-        let sampleStartTime;
+    // ================= Constantes =================
+    const UI_VERSION = "3.1.0";    // protocolo v4 + identificação mínima (2026-08-24)
+    const PAGE_SIZE_RATING = 10;   // máx. itens por página (blocos A/B)
+    const PAGE_SIZE_ESA = 9;       // máx. pares por página (bloco ESA)
+    const SEC_PER_ITEM_2Q = 16;    // item com EMOS + naturalidade
+    const SEC_PER_ITEM_1Q = 12;    // item só com EMOS
+    const SEC_PER_ESA_PAIR = 18;
+    const EMO_PT = { angry: "raiva", happy: "alegria", sad: "tristeza", neutral: "neutro" };
 
-        // Função para embaralhar array
-        function shuffleArray(array) {
-            const newArray = [...array];
-            for (let i = newArray.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    // Escala EMOS com rótulo em todos os pontos. ITU-T P.808 Anexo A.1
+    // (integral à recomendação): "both 'term' and 'score' are visible for the
+    // subject" e "the distance between the points should be equal". Até a v4
+    // só os extremos eram nomeados, o que deixava 2-3-4 sem significado.
+    const EMOS_SCALE = [
+        ["1", "Não expressa"], ["2", "Expressa pouco"], ["3", "Expressa razoavelmente"],
+        ["4", "Expressa bem"], ["5", "Expressa perfeitamente"],
+    ];
+
+    // Definições operacionais dos alvos (protocolo v4 §3). Descrevem o ESTADO
+    // de quem fala, não uma receita acústica: listar pitch/velocidade viraria
+    // caça a pista e não julgamento perceptual.
+    const EMO_DEF = {
+        angry: "A pessoa soa irritada, com raiva, hostil ou impaciente.",
+        happy: "A pessoa soa contente, animada, alegre.",
+        sad: "A pessoa soa triste, abatida, desanimada.",
+    };
+
+    const params = new URLSearchParams(location.search);
+    const DEBUG = params.get("debug") === "1";
+
+    // Recrutamento em bola de neve (decisão 2026-08-16): o link é
+    // encaminhado, então não existe link individual por convidado. A seed é
+    // sorteada na primeira visita e fixada no navegador; `?new=1` força uma
+    // sessão nova quando duas pessoas usam o mesmo dispositivo.
+    const SEED_LS_KEY = "mos-eval:assigned-seed";
+    function assignSeed() {
+        let s = null;
+        try { s = localStorage.getItem(SEED_LS_KEY); } catch (e) { /* modo privado */ }
+        if (params.get("new") === "1" || !s || !/^\d{6}$/.test(s)) {
+            const buf = new Uint32Array(1);
+            (window.crypto || window.msCrypto).getRandomValues(buf);
+            s = String(100000 + (buf[0] % 900000));
+            try { localStorage.setItem(SEED_LS_KEY, s); } catch (e) { /* ignora */ }
+        }
+        return s;
+    }
+
+    // ================= RNG determinístico =================
+    // xmur3 (string hash) + mulberry32 (PRNG). Streams independentes por propósito:
+    // rngFor(seed, "rating_pt") etc. — mesma seed => mesma sessão, sempre.
+    function xmur3(str) {
+        let h = 1779033703 ^ str.length;
+        for (let i = 0; i < str.length; i++) {
+            h = Math.imul(h ^ str.charCodeAt(i), 3432918353);
+            h = (h << 13) | (h >>> 19);
+        }
+        return function () {
+            h = Math.imul(h ^ (h >>> 16), 2246822507);
+            h = Math.imul(h ^ (h >>> 13), 3266489909);
+            return (h ^= h >>> 16) >>> 0;
+        };
+    }
+    function mulberry32(a) {
+        return function () {
+            a |= 0; a = (a + 0x6D2B79F5) | 0;
+            let t = Math.imul(a ^ (a >>> 15), 1 | a);
+            t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+            return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+        };
+    }
+    function rngFor(seed, purpose) { return mulberry32(xmur3(seed + ":" + purpose)()); }
+    function shuffled(arr, rng) {
+        const a = [...arr];
+        for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(rng() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+    }
+
+    // ================= Estado global =================
+    let manifest = null;
+    let raterSeed = null;      // string numérica
+    let session = null;        // { steps: [...] }
+    let store = null;          // estado persistido (localStorage)
+    let stepIndex = 0;
+    let audioStats = {};       // por passo: { itemId: {plays, played_ms} }
+    let stepShownAt = null;
+
+    const $app = document.getElementById("app");
+
+    // ================= Persistência / retomada =================
+    function storeKey() { return "mos-eval-v1:" + raterSeed; }
+    function loadStore() {
+        try {
+            const raw = localStorage.getItem(storeKey());
+            if (raw) return JSON.parse(raw);
+        } catch (e) { console.warn("localStorage load failed", e); }
+        return { seed: raterSeed, started_at: new Date().toISOString(), steps: {}, pending: [], finished: false };
+    }
+    function saveStore() {
+        try { localStorage.setItem(storeKey(), JSON.stringify(store)); }
+        catch (e) { console.warn("localStorage save failed", e); }
+    }
+
+    // ================= Envio (Netlify Forms) =================
+    async function postForm(record) {
+        const body = new URLSearchParams({
+            "form-name": "mos-eval",
+            rater_seed: String(record.rater_seed),
+            kind: record.kind,
+            step_id: record.step_id,
+            payload_json: JSON.stringify(record.payload),
+            timestamp: record.timestamp,
+            ui_version: UI_VERSION,
+            "bot-field": "",   // honeypot vazio = envio humano
+        }).toString();
+        const resp = await fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body,
+        });
+        if (!resp.ok) throw new Error("HTTP " + resp.status);
+    }
+    function isLocal() {
+        return location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.protocol === "file:";
+    }
+    async function submitStep(kind, stepId, payload) {
+        const record = {
+            rater_seed: raterSeed, kind, step_id: stepId, payload,
+            timestamp: new Date().toISOString(),
+        };
+        store.steps[stepId] = { done: true, at: record.timestamp };
+        store.pending.push(record);
+        saveStore();
+        await flushPending();
+    }
+    async function flushPending() {
+        if (isLocal()) return; // teste local: mantém na fila, exporta no fim
+        const still = [];
+        for (const rec of store.pending) {
+            try { await postForm(rec); }
+            catch (e) { console.warn("submit failed, will retry", rec.step_id, e); still.push(rec); }
+        }
+        store.pending = still;
+        saveStore();
+    }
+    window.addEventListener("online", () => { flushPending(); });
+
+    function downloadBackup() {
+        const data = { seed: raterSeed, ui_version: UI_VERSION, exported_at: new Date().toISOString(), store };
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url; a.download = "mos_eval_" + raterSeed + "_" + Date.now() + ".json";
+        document.body.appendChild(a); a.click(); document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    }
+
+    // ================= Montagem determinística da sessão =================
+    function chunkEven(arr, maxSize) {
+        const nPages = Math.ceil(arr.length / maxSize);
+        const base = Math.floor(arr.length / nPages);
+        const extra = arr.length % nPages;
+        const pages = [];
+        let k = 0;
+        for (let p = 0; p < nPages; p++) {
+            const size = base + (p < extra ? 1 : 0);
+            pages.push(arr.slice(k, k + size));
+            k += size;
+        }
+        return pages;
+    }
+
+    function assembleSession() {
+        const items = manifest.items;
+        const byId = {};
+        items.forEach((it) => { byId[it.id] = it; });
+
+        // Âncoras de treino (protocolo v4): três cantos do espaço 2D.
+        // gt_clear = teto duplo · synth_bad = off-diagonal (emoção presente,
+        // naturalidade ruim) · esa_example_neu = piso de expressão (GT neutro
+        // com alvo emocional informado: EMOS no piso, naturalidade no teto).
+        // O último era o lado neutro do par de exemplo do ESA, que saiu do
+        // núcleo e liberou o clipe. A mediana saiu: o meio das duas escalas o
+        // rater interpola sozinho, então não ancorava nada.
+        const TRAINING_ANCHORS = ["gt_clear", "synth_bad", "esa_example_neu"];
+        const training = shuffled(
+            items.filter((i) => i.block === "training" && i.active !== false &&
+                                TRAINING_ANCHORS.indexOf(i.training_anchor) >= 0),
+            rngFor(raterSeed, "training_order"));  // P.808 6.3.1.2: ordem randomizada,
+                                                   // mesmos estímulos para todos
+        const ratingPT = items.filter((i) => i.block === "rating_pt");
+        const ratingEN = items.filter((i) => i.block === "rating_en");
+
+        // Trappings de resposta instruída foram aposentados na v4 (`active:
+        // false` no manifest); as sondas de conteúdo os substituem. O filtro
+        // continua aqui para que um manifest antigo não os reintroduza.
+        const traps = (manifest.placeholders && manifest.placeholders.trapping || [])
+            .filter((t) => t.audio && t.active !== false);
+        const trapsFor = (block) => traps.filter((t) => t.block === block);
+
+        function buildBlockPages(blockName, blockItems) {
+            const rng = rngFor(raterSeed, blockName);
+            const order = shuffled(blockItems, rng);
+            // injeta cada trapping numa posição uniforme da sequência
+            for (const t of trapsFor(blockName)) {
+                const pos = Math.floor(rng() * (order.length + 1));
+                order.splice(pos, 0, Object.assign({ is_trapping: true }, t));
             }
-            return newArray;
+            return chunkEven(order, PAGE_SIZE_RATING);
         }
 
-        // Iniciar avaliação
-        function startEvaluation() {
-            const participantId = document.getElementById('participantId').value.trim();
-            const participantAge = document.getElementById('participantAge').value;
-            
-            if (!participantId) {
-                alert('Por favor, insira o código do participante.');
-                return;
-            }
-            
-            participantData = {
-                id: participantId,
-                age: participantAge || null,
-                startTime: new Date().toISOString()
-            };
-            
-            startTime = Date.now();
-            shuffledSamples = shuffleArray(audioSamples);
-            
-            document.getElementById('introScreen').style.display = 'none';
-            document.getElementById('evaluationScreen').style.display = 'block';
-            document.getElementById('totalSamples').textContent = shuffledSamples.length;
-            
-            loadSample(0);
-        }
-
-        // Carregar amostra
-        function loadSample(index) {
-            const sample = shuffledSamples[index];
-            sampleStartTime = Date.now();
-            
-            // Atualizar informações
-            document.getElementById('currentSample').textContent = index + 1;
-            document.getElementById('languageBadge').textContent = sample.language;
-            
-            // Construir caminhos dos áudios
-            const audioBasePath = 'audio/';
-            
-            // Áudio de referência (sempre na pasta refs/)
-            const referencePath = audioBasePath + 'refs/' + sample.ref;
-            
-            // Áudio sintetizado - usar folder e synth diretamente
-            const synthPath = audioBasePath + sample.folder + '/' + sample.synth;
-            
-            // Carregar áudios
-            document.getElementById('referenceAudio').src = referencePath;
-            document.getElementById('synthesizedAudio').src = synthPath;
-            
-            // Limpar seleções anteriores
-            document.querySelectorAll('input[type="radio"]').forEach(radio => {
-                radio.checked = false;
+        // ---- Sondas de conteúdo (protocolo v4) ----
+        // A sonda pergunta qual frase foi dita no ÚLTIMO áudio da página que
+        // acabou de ser enviada. O áudio já é inalcançável (página submetida
+        // + retorno bloqueado), então ela mede escuta, não obediência.
+        const probeCfg = manifest.content_probes || { n_pt: 0, n_en: 0, n_options: 4 };
+        function buildProbes(blockName, pages, nProbes) {
+            const rng = rngFor(raterSeed, "probe_" + blockName);
+            const lang = blockName === "rating_pt" ? "pt" : "en";
+            const pool = [];
+            items.forEach((i) => {
+                if (i.language === lang && i.text && i.block === blockName && pool.indexOf(i.text) < 0) pool.push(i.text);
             });
-            
-            // Esconder seção de referência inicialmente
-            document.getElementById('referenceSection').style.display = 'none';
-            
-            // Atualizar progresso
-            updateProgress(index);
-            
-            // Gerenciar botões
-            document.getElementById('prevBtn').disabled = index === 0;
-            
-            if (index === shuffledSamples.length - 1) {
-                document.getElementById('nextBtn').textContent = 'Finalizar';
-                document.getElementById('nextBtn').classList.remove('btn-next');
-                document.getElementById('nextBtn').classList.add('btn-submit');
-            } else {
-                document.getElementById('nextBtn').innerHTML = 'Próxima <span>→</span>';
-                document.getElementById('nextBtn').classList.remove('btn-submit');
-                document.getElementById('nextBtn').classList.add('btn-next');
+            const pageIdx = shuffled(pages.map((_, i) => i), rng).slice(0, nProbes).sort((a, b) => a - b);
+            const probes = {};
+            for (const pi of pageIdx) {
+                const target = pages[pi][pages[pi].length - 1];
+                if (!target || !target.text) continue;  // trapping legado sem texto
+                const distract = shuffled(pool.filter((t) => t !== target.text), rng)
+                    .slice(0, Math.max(1, (probeCfg.n_options || 4) - 1));
+                probes[pi] = {
+                    targetId: target.id,
+                    options: shuffled([target.text].concat(distract), rng),
+                };
             }
-            
-            // Pausar áudios ao carregar nova amostra
-            document.getElementById('referenceAudio').pause();
-            document.getElementById('synthesizedAudio').pause();
-        }
-        
-        // Função para mostrar referência quando MOS for respondido
-        function checkMOSAndShowReference() {
-            const mosSelected = document.querySelector('input[name="mos"]:checked');
-            if (mosSelected) {
-                document.getElementById('referenceSection').style.display = 'block';
-            }
+            return probes;
         }
 
-        // Atualizar progresso e tempo estimado
-        function updateProgress(index) {
-            const progress = ((index + 1) / shuffledSamples.length) * 100;
-            document.getElementById('progressBar').style.width = progress + '%';
-            
-            // Estimar tempo restante
-            if (index > 0) {
-                const avgTimePerSample = (Date.now() - startTime) / (index + 1);
-                const remainingSamples = shuffledSamples.length - index - 1;
-                const remainingTime = Math.ceil((avgTimePerSample * remainingSamples) / 60000);
-                document.getElementById('timeEstimate').textContent = `~${remainingTime} min restantes`;
-            }
-        }
+        const ptPages = buildBlockPages("rating_pt", ratingPT);
+        const enPages = buildBlockPages("rating_en", ratingEN);
+        const probesFor = {
+            rating_pt: buildProbes("rating_pt", ptPages, probeCfg.n_pt || 0),
+            rating_en: buildProbes("rating_en", enPages, probeCfg.n_en || 0),
+        };
 
-        // Próxima amostra
-        function nextSample() {
-            // Verificar se todas as avaliações foram feitas
-            const mos = document.querySelector('input[name="mos"]:checked');
-            const spksim = document.querySelector('input[name="spksim"]:checked');
-            const emosim = document.querySelector('input[name="emosim"]:checked');
-            
-            if (!mos || !spksim || !emosim) {
-                alert('Por favor, avalie todos os três aspectos antes de continuar.');
-                return;
-            }
-            
-            // Salvar resultados
-            const sample = shuffledSamples[currentIndex];
-            const evaluationTime = Date.now() - sampleStartTime;
-            
-            evaluationResults.push({
-                sampleId: sample.id,
-                presentationOrder: currentIndex + 1,
-                // Informações ocultas (para análise posterior)
-                hiddenData: {
-                    emotion: sample.emotion,
-                    gender: sample.gender,
-                    language: sample.language,
-                    model: sample.model,
-                    folder: sample.folder,
-                    synthFile: sample.synth,
-                    refFile: sample.ref
-                },
-                // Avaliações
-                ratings: {
-                    mos: parseInt(mos.value),
-                    speakerSimilarity: parseInt(spksim.value),
-                    emotionSimilarity: parseInt(emosim.value)
-                },
-                evaluationTime: evaluationTime,
-                timestamp: new Date().toISOString()
-            });
-            
-            // Próxima amostra ou finalizar
-            if (currentIndex < shuffledSamples.length - 1) {
-                currentIndex++;
-                loadSample(currentIndex);
-            } else {
-                finishEvaluation();
-            }
-        }
+        // Counterbalancing pré-registrado: seed par = EN→PT, ímpar = PT→EN.
+        const enFirst = (BigInt(raterSeed) % 2n) === 0n;
+        const blockSeq = enFirst
+            ? [["rating_en", enPages], ["rating_pt", ptPages]]
+            : [["rating_pt", ptPages], ["rating_en", enPages]];
 
-        // Amostra anterior
-        function previousSample() {
-            if (currentIndex > 0) {
-                // Remover última avaliação se voltando
-                evaluationResults.pop();
-                currentIndex--;
-                loadSample(currentIndex);
-            }
-        }
+        // ESA: ordem dos pares + ordem intra-par, ambas determinísticas.
+        const esaRng = rngFor(raterSeed, "esa");
+        const usablePairs = manifest.esa_pairs.filter((p) => p.a && p.b);
+        const esaOrder = shuffled(usablePairs, esaRng).map((p) => ({ pair: p, swap: esaRng() < 0.5 }));
+        const esaPages = chunkEven(esaOrder, PAGE_SIZE_ESA);
 
-        // Finalizar avaliação
-        function finishEvaluation() {
-            participantData.endTime = new Date().toISOString();
-            participantData.totalTime = Date.now() - startTime;
-            
-            // Gerar código de confirmação
-            const confirmationCode = 'TTS-' + Date.now().toString(36).toUpperCase();
-            document.getElementById('confirmationCode').textContent = confirmationCode;
-            
-            // Preparar dados para salvamento
-            const evaluationData = {
-                version: "1.0",
-                test: "TTS_BLIND_EVALUATION",
-                participant: participantData,
-                confirmationCode: confirmationCode,
-                results: evaluationResults
-            };
-            
-            // Salvar dados localmente
-            saveResults(evaluationData);
-            
-            // Mostrar tela final
-            document.getElementById('evaluationScreen').style.display = 'none';
-            document.getElementById('finishScreen').style.display = 'block';
-        }
-
-        // Salvar resultados
-        function saveResults(data) {
-            // Check if we're running on Netlify or locally
-            const isNetlify = window.location.hostname !== 'localhost' && 
-                            window.location.hostname !== '127.0.0.1' && 
-                            !window.location.hostname.includes('local');
-            
-            if (isNetlify) {
-                console.log('🌐 Deployed site detected - attempting Netlify Form submission...');
-                // Try to submit to server first
-                submitToServer(data).then(() => {
-                    console.log('✅ Results submitted successfully to Netlify Forms!');
-                    alert('✅ Resultados enviados com sucesso para o servidor!');
-                }).catch(error => {
-                    console.error('❌ Server submission failed:', error);
-                    console.log('📥 Falling back to download...');
-                    alert('⚠️ Falha no envio. Fazendo download como backup...');
-                    downloadResults(data);
+        const steps = [];
+        steps.push({ id: "qual", type: "qualification" });
+        steps.push({ id: "hp", type: "headphone" });
+        steps.push({ id: "definitions", type: "definitions" });
+        steps.push({ id: "training", type: "rating_page", block: "training", pageIndex: 0, pageCount: 1, items: training, training: true });
+        blockSeq.forEach(([blockName, pages], bi) => {
+            pages.forEach((pageItems, pi) => {
+                steps.push({
+                    id: blockName + "_p" + pi, type: "rating_page", block: blockName,
+                    pageIndex: pi, pageCount: pages.length, items: pageItems,
                 });
-            } else {
-                console.log('🏠 Local testing detected - downloading results...');
-                alert('🏠 Teste local: baixando resultados como arquivo JSON');
-                downloadResults(data);
-            }
-        }
-
-        // Submit results to Netlify Forms
-        async function submitToServer(data) {
-            const formData = new FormData();
-            formData.append('form-name', 'tts-results');
-            formData.append('participant_id', data.participant.id);
-            formData.append('confirmation_code', data.confirmationCode);
-            formData.append('results_json', JSON.stringify(data));
-            formData.append('timestamp', new Date().toISOString());
-            
-            const response = await fetch('/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                },
-                body: new URLSearchParams(formData).toString()
+                const probe = probesFor[blockName][pi];
+                if (probe) {
+                    steps.push({
+                        id: "probe_" + blockName + "_p" + pi, type: "probe",
+                        block: blockName, targetId: probe.targetId, options: probe.options,
+                    });
+                }
             });
-            
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
+            if (bi === 0) steps.push({ id: "pause1", type: "pause" });
+        });
+        // ESA: contingência pré-registrada, disparada por H1-PT nulo. Fica
+        // fora do núcleo (manifest.esa_enabled === false) e é religado num
+        // link separado sem regerar nada.
+        if (manifest.esa_enabled) {
+            steps.push({ id: "esa_intro", type: "esa_intro" });
+            esaPages.forEach((pagePairs, pi) => {
+                steps.push({ id: "esa_p" + pi, type: "esa_page", pageIndex: pi, pageCount: esaPages.length, pairs: pagePairs });
+            });
+        }
+        steps.push({ id: "final", type: "final" });
+
+        return { steps, byId, enFirst };
+    }
+
+    // ================= Áudio: players + estatísticas =================
+    function audioEl(itemId, src) {
+        return '<audio controls preload="none" data-item="' + itemId + '"><source src="' + src + '" type="audio/wav"></audio>';
+    }
+    function wireAudioStats(container) {
+        audioStats = {};
+        container.querySelectorAll("audio[data-item]").forEach((el) => {
+            const id = el.dataset.item;
+            audioStats[id] = audioStats[id] || { plays: 0, played_ms: 0, _t0: null };
+            el.addEventListener("play", () => { audioStats[id]._t0 = Date.now(); });
+            const stop = () => {
+                if (audioStats[id]._t0) {
+                    audioStats[id].played_ms += Date.now() - audioStats[id]._t0;
+                    audioStats[id]._t0 = null;
+                }
+            };
+            el.addEventListener("pause", stop);
+            el.addEventListener("ended", () => { stop(); audioStats[id].plays += 1; });
+            // um áudio por vez
+            el.addEventListener("play", () => {
+                container.querySelectorAll("audio").forEach((other) => { if (other !== el) other.pause(); });
+            });
+        });
+    }
+    function statsFor(id) {
+        const s = audioStats[id] || { plays: 0, played_ms: 0 };
+        return { plays: s.plays, played_ms: Math.round(s.played_ms) };
+    }
+
+    // ================= Renderização =================
+    function render() {
+        const step = session.steps[stepIndex];
+        stepShownAt = new Date().toISOString();
+        updateProgress();
+        window.scrollTo(0, 0);
+        const renderers = {
+            qualification: renderQualification,
+            headphone: renderHeadphone,
+            definitions: renderDefinitions,
+            rating_page: renderRatingPage,
+            probe: renderProbe,
+            pause: renderPause,
+            esa_intro: renderEsaIntro,
+            esa_page: renderEsaPage,
+            final: renderFinal,
+        };
+        renderers[step.type](step);
+        wireAudioStats($app);
+    }
+
+    function updateProgress() {
+        const total = session.steps.length;
+        const pc = document.getElementById("progressContainer");
+        pc.style.display = stepIndex > 0 ? "block" : "none";
+        document.getElementById("progressLabel").textContent = "Etapa " + (stepIndex + 1) + " de " + total;
+        document.getElementById("progressBar").style.width = ((stepIndex) / (total - 1)) * 100 + "%";
+        // estimativa grosseira do tempo restante
+        let secs = 0;
+        for (let i = stepIndex; i < session.steps.length; i++) {
+            const s = session.steps[i];
+            if (s.type === "rating_page") {
+                secs += s.items.reduce((t, it) =>
+                    t + (it.ask_naturalness !== false ? SEC_PER_ITEM_2Q : SEC_PER_ITEM_1Q), 0);
+            } else if (s.type === "esa_page") secs += s.pairs.length * SEC_PER_ESA_PAIR;
+            else if (s.type === "probe") secs += 15;
+            else secs += 60;
+        }
+        document.getElementById("timeEstimate").textContent = "~" + Math.max(1, Math.round(secs / 60)) + " min restantes";
+    }
+
+    function advance() {
+        stepIndex += 1;
+        if (stepIndex >= session.steps.length) stepIndex = session.steps.length - 1;
+        render();
+    }
+    function showError(msg) {
+        const box = document.getElementById("errorBox");
+        if (box) { box.textContent = msg; box.style.display = "block"; box.scrollIntoView({ behavior: "smooth", block: "center" }); }
+        else alert(msg);
+    }
+
+    // ---------- Tela: link inválido ----------
+    function renderSeedGate() {
+        $app.innerHTML =
+            '<div class="center-screen">' +
+            "<h1>Avaliação de Fala Sintetizada</h1>" +
+            '<p class="subtitle">Estudo acadêmico de síntese de voz com expressão emocional</p>' +
+            '<div class="warning">Este link não contém o seu código de participante. Use o <strong>link individual</strong> que você recebeu no convite.</div>' +
+            '<div class="form-block"><div class="form-group"><label for="seedInput">Ou digite aqui o código numérico do convite:</label>' +
+            '<input type="text" id="seedInput" inputmode="numeric" placeholder="Ex.: 1017"></div></div>' +
+            '<button class="nav btn-next" onclick="window.applyManualSeed()">Continuar</button>' +
+            "</div>";
+    }
+    window.applyManualSeed = function () {
+        const v = (document.getElementById("seedInput").value || "").trim();
+        if (!/^\d+$/.test(v)) { alert("O código é numérico (veio no seu convite)."); return; }
+        location.search = "?r=" + v + (DEBUG ? "&debug=1" : "");
+    };
+
+    // ---------- Tela: consentimento + qualificação ----------
+    function renderQualification() {
+        $app.innerHTML =
+            "<h1>Avaliação de Fala Sintetizada</h1>" +
+            '<p class="subtitle">Estudo acadêmico de síntese de voz com expressão emocional (UNESP)</p>' +
+            '<div class="warning"><strong>⚠️ Fones de ouvido são obrigatórios</strong> durante toda a avaliação, num ambiente silencioso. A avaliação leva <strong>até 30 minutos</strong>. Procure concluí-la em uma única sessão; seu progresso é salvo a cada página, neste mesmo navegador.</div>' +
+            '<div class="notice">Você ouvirá clipes curtos de fala, em português e em inglês, e responderá para cada um quão bem a fala expressa uma emoção indicada na tela. Em parte dos áudios há também uma pergunta sobre naturalidade. Não existe resposta certa: queremos a sua percepção.<br><br>' +
+            '<strong>Em alguns momentos vamos perguntar sobre o que a pessoa falou no áudio anterior</strong>, e não é possível voltar para reouvir. Ouça cada áudio com atenção.</div>' +
+            '<div class="form-block">' +
+            '<h2>Sobre você</h2>' +
+            '<div class="form-group"><label for="qEmail">E-mail</label><input type="email" id="qEmail" autocomplete="email" placeholder="voce@exemplo.com"></div>' +
+            '<div class="form-group"><label for="qAge">Idade</label><input type="number" id="qAge" min="18" max="99" placeholder="Ex.: 28"></div>' +
+            '<div class="form-group"><label for="qGender">Gênero (opcional)</label><select id="qGender"><option value="">Prefiro não informar</option><option>Feminino</option><option>Masculino</option><option>Outro</option></select></div>' +
+            '<div class="form-group"><label for="qCefr">Quando você <strong>ouve</strong> inglês falado (filmes, vídeos, conversas), o que descreve melhor sua compreensão?</label><select id="qCefr">' +
+            '<option value="">Selecione…</option>' +
+            '<option value="A1">Entendo só palavras soltas e frases muito básicas</option>' +
+            '<option value="A2">Entendo frases simples do dia a dia, se falarem devagar</option>' +
+            '<option value="B1">Entendo o essencial de uma conversa comum, com algum esforço</option>' +
+            '<option value="B2">Acompanho filmes/vídeos sem legenda na maior parte do tempo</option>' +
+            '<option value="C1">Entendo quase tudo com facilidade, incluindo nuances e tom</option>' +
+            '<option value="C2">Compreendo como um falante nativo</option>' +
+            "</select>" +
+            '<div style="font-size:12px;color:#777;margin-top:4px;">Responda com sinceridade. Nenhuma opção desclassifica: usamos isso apenas para descrever o painel no estudo.</div></div>' +
+            '<h2 style="margin-top:26px;">Condições e consentimento</h2>' +
+            '<div class="check-group"><input type="checkbox" id="qPhones"><label for="qPhones">Estou usando <strong>fones de ouvido</strong> e estou em um ambiente silencioso.</label></div>' +
+            '<div class="check-group"><input type="checkbox" id="qConsent"><label for="qConsent">Participo voluntariamente. Entendo que meu e-mail será usado apenas para controlar minha participação e enviar um lembrete, se necessário; que posso interromper a qualquer momento; e que minhas respostas serão analisadas e divulgadas somente de forma agregada, sem identificação pessoal.</label></div>' +
+            "</div>" +
+            '<div class="error-box" id="errorBox"></div>' +
+            '<div class="navigation"><button class="nav btn-next" onclick="window.submitQualification()">Começar</button></div>';
+    }
+    window.submitQualification = async function () {
+        const emailInput = document.getElementById("qEmail");
+        const email = emailInput.value.trim().toLowerCase();
+        emailInput.value = email;
+        const age = document.getElementById("qAge").value;
+        const cefr = document.getElementById("qCefr").value;
+        const phones = document.getElementById("qPhones").checked;
+        const consent = document.getElementById("qConsent").checked;
+        if (!email || !emailInput.checkValidity()) return showError("Informe um e-mail válido.");
+        if (!age) return showError("Informe sua idade.");
+        if (!cefr) return showError("Selecione seu nível de inglês.");
+        if (!phones) return showError("Confirme que está usando fones de ouvido em ambiente silencioso.");
+        if (!consent) return showError("É preciso concordar com o termo de participação para continuar.");
+        await submitStep("qualification", "qual", {
+            shown_at: stepShownAt, submitted_at: new Date().toISOString(),
+            email, age: Number(age), gender: document.getElementById("qGender").value || null,
+            cefr_en: cefr, headphones_confirmed: phones, consent,
+            user_agent: navigator.userAgent, screen: screen.width + "x" + screen.height,
+            manifest_version: manifest.version, manifest_seed: manifest.seed, debug: DEBUG,
+        });
+        advance();
+    };
+
+    // ---------- Tela: check de fones ----------
+    // Data-driven: quando os áudios de hp_check forem gravados, cada entrada do
+    // manifest deve ganhar {audio, question, options: [..], expected}. Enquanto
+    // forem placeholders sem áudio, cai no modo de confirmação simples.
+    function renderHeadphone(step) {
+        const trials = (manifest.placeholders && manifest.placeholders.headphone_check || []).filter((t) => t.audio);
+        if (trials.length === 0) {
+            $app.innerHTML =
+                "<h2>Check de fones</h2>" +
+                '<div class="warning">Coloque os fones agora e ajuste o volume para um nível confortável usando o áudio de exemplo abaixo antes de continuar.</div>' +
+                '<div class="item-card"><div class="item-title" style="margin-bottom:6px;">Áudio de ajuste de volume</div>' +
+                audioEl("volume_adjust", session.volumeAdjustSrc) + "</div>" +
+                '<div class="check-group" style="max-width:560px;margin:18px auto;"><input type="checkbox" id="hpOk"><label for="hpOk">Ajustei o volume e estou ouvindo pelos <strong>fones</strong>.</label></div>' +
+                '<div class="error-box" id="errorBox"></div>' +
+                '<div class="navigation"><button class="nav btn-next" onclick="window.submitHeadphoneSimple()">Continuar</button></div>';
+            return;
+        }
+        let html = "<h2>Check de fones</h2><p>Responda às perguntas abaixo. Elas só têm resposta correta com fones de ouvido.</p>";
+        trials.forEach((t, i) => {
+            html += '<div class="item-card"><div class="item-title">Trial ' + (i + 1) + "</div>" + audioEl(t.id, t.audio) +
+                '<div class="question"><div class="q-text">' + t.question + '</div><div class="rating-group">' +
+                t.options.map((opt, oi) =>
+                    '<div class="rating-option"><input type="radio" id="hp_' + i + "_" + oi + '" name="hp_' + i + '" value="' + oi + '">' +
+                    '<label class="rating-label" for="hp_' + i + "_" + oi + '">' + opt + "</label></div>"
+                ).join("") + "</div></div></div>";
+        });
+        html += '<div class="error-box" id="errorBox"></div><div class="navigation"><button class="nav btn-next" onclick="window.submitHeadphoneTrials()">Continuar</button></div>';
+        $app.innerHTML = html;
+        session.hpTrials = trials;
+    }
+    window.submitHeadphoneSimple = async function () {
+        if (!document.getElementById("hpOk").checked && !DEBUG) return showError("Confirme o ajuste de volume com fones para continuar.");
+        await submitStep("headphone", "hp", {
+            mode: "confirm_only", shown_at: stepShownAt, submitted_at: new Date().toISOString(),
+            volume_adjust: statsFor("volume_adjust"), passed: true, debug: DEBUG,
+        });
+        advance();
+    };
+    window.submitHeadphoneTrials = async function () {
+        const trials = session.hpTrials;
+        const answers = [];
+        for (let i = 0; i < trials.length; i++) {
+            const sel = document.querySelector('input[name="hp_' + i + '"]:checked');
+            if (!sel) return showError("Responda todos os trials.");
+            answers.push({ id: trials[i].id, answer: Number(sel.value), expected: trials[i].expected, audio: statsFor(trials[i].id) });
+        }
+        const passed = answers.every((a) => a.answer === a.expected);
+        await submitStep("headphone", "hp", {
+            mode: "trials", shown_at: stepShownAt, submitted_at: new Date().toISOString(),
+            answers, passed, debug: DEBUG,
+        });
+        if (!passed && !DEBUG) {
+            $app.innerHTML = '<div class="center-screen"><h1>Obrigado!</h1><p>Infelizmente o teste requer fones de ouvido funcionando corretamente, e não foi possível confirmar isso agora. Se acha que foi um engano, recarregue a página e tente novamente com os fones conectados.</p></div>';
+            document.getElementById("progressContainer").style.display = "none";
+            return;
+        }
+        advance();
+    };
+
+    // ---------- Tela: página de rating (treino e blocos A/B) ----------
+    // ---------- Tela: definições das emoções (protocolo v4 §3) ----------
+    function emoLegend() {
+        return '<div class="notice" style="text-align:left;">' +
+            ["angry", "happy", "sad"].map((k) =>
+                "<strong>" + EMO_PT[k] + ":</strong> " + EMO_DEF[k]).join("<br>") +
+            "</div>";
+    }
+    function renderDefinitions() {
+        $app.innerHTML =
+            "<h2>Antes de começar: o que estamos perguntando</h2>" +
+            '<div class="notice" style="text-align:left;">Em cada áudio uma <strong>emoção-alvo</strong> aparece na tela, e você responde <strong>quão bem aquela fala expressa aquela emoção</strong>. ' +
+            "Julgue <strong>a voz</strong>, não o que a frase diz: as frases são neutras de propósito, e a mesma frase reaparece com emoções diferentes.<br><br>" +
+            "Responda mesmo que ache que a fala expressa outra emoção; a pergunta é sempre sobre a emoção indicada.<br><br>" +
+            "<strong>Use a escala inteira.</strong> Se uma fala não expressa nada da emoção indicada, 1 é a resposta certa; se expressa perfeitamente, 5.</div>" +
+            "<h3 style='margin:18px 0 8px;'>As três emoções deste estudo</h3>" +
+            emoLegend() +
+            '<div class="warning" style="text-align:left;">Ao longo do teste, algumas telas vão perguntar <strong>sobre o que a pessoa falou</strong> no áudio anterior. ' +
+            "Não é pegadinha: é como conferimos que os áudios foram realmente ouvidos. <strong>Não dá para voltar e reouvir</strong>, então ouça cada áudio com atenção.</div>" +
+            '<div class="navigation"><button class="nav btn-next" onclick="window.submitDefinitions()">Entendi, continuar</button></div>';
+    }
+    window.submitDefinitions = async function () {
+        const step = session.steps[stepIndex];
+        await submitStep("definitions", step.id, {
+            shown_at: stepShownAt, submitted_at: new Date().toISOString(), debug: DEBUG,
+        });
+        advance();
+    };
+
+    // ---------- Tela: sonda de conteúdo (protocolo v4 §3/§6) ----------
+    function renderProbe(step) {
+        $app.innerHTML =
+            "<h2>Uma pergunta rápida sobre o último áudio</h2>" +
+            '<div class="notice">Sem voltar: qual destas frases foi dita no <strong>último áudio</strong> da página anterior?</div>' +
+            '<div class="rating-group" style="flex-direction:column;align-items:stretch;gap:10px;">' +
+            step.options.map((t, i) =>
+                '<div class="rating-option" style="width:100%;">' +
+                '<input type="radio" id="probe_' + i + '" name="probe" value="' + i + '">' +
+                '<label class="rating-label" for="probe_' + i + '" style="width:100%;text-align:left;padding:12px 14px;">' +
+                t.replace(/</g, "&lt;") + "</label></div>").join("") +
+            "</div>" +
+            '<div class="error-box" id="errorBox"></div>' +
+            '<div class="navigation"><button class="nav btn-next" onclick="window.submitProbe()">Continuar</button></div>';
+    }
+    window.submitProbe = async function () {
+        const step = session.steps[stepIndex];
+        const sel = document.querySelector('input[name="probe"]:checked');
+        if (!sel && !DEBUG) return showError("Escolha uma das alternativas.");
+        // O gabarito não é enviado: a correção compara `chosen_text` com o
+        // texto de `target_id` no analyze_mos.py, do lado privado.
+        await submitStep("probe", step.id, {
+            block: step.block, target_id: step.targetId, options: step.options,
+            chosen_text: sel ? step.options[Number(sel.value)] : null,
+            shown_at: stepShownAt, submitted_at: new Date().toISOString(), debug: DEBUG,
+        });
+        advance();
+    };
+
+    function blockLabel(block) {
+        if (block === "training") return "Treino";
+        return block === "rating_pt" ? "Português" : "Inglês";
+    }
+    function renderRatingPage(step) {
+        let html = "";
+        if (step.training) {
+            html += "<h2>Treino (não conta para o estudo)</h2>" +
+                '<div class="notice">Para cada áudio você responde <strong>duas perguntas</strong>:<br>' +
+                "1) <strong>Expressão da emoção</strong>: quão bem a fala expressa a emoção indicada no topo do cartão (1 = não expressa · 5 = expressa perfeitamente).<br>" +
+                "2) <strong>Naturalidade</strong>: quão natural a fala soa, independentemente da emoção (5 Excelente · 4 Boa · 3 Regular · 2 Ruim · 1 Péssima).<br>" +
+                "Ouça cada áudio até o fim pelo menos uma vez. Estes " + step.items.length + " exemplos são só para calibrar e não contam.<br>" +
+                "Não há resposta certa ou errada, desde que você ouça os áudios e dê a sua opinião.</div>" +
+                emoLegend();
+        } else {
+            const first = step.pageIndex === 0;
+            html += '<div class="block-header"><span class="lang-badge">' + blockLabel(step.block) + "</span>" +
+                "<h2>Bloco " + blockLabel(step.block) + ", página " + (step.pageIndex + 1) + " de " + step.pageCount + "</h2></div>";
+            if (first) {
+                html += '<div class="notice">' +
+                    (step.block === "rating_en"
+                        ? "Neste bloco os áudios são <strong>em inglês</strong>. As perguntas continuam as mesmas."
+                        : "Neste bloco os áudios são <strong>em português</strong>.") +
+                    "</div>";
             }
-            
-            return response;
+            // Definições acessíveis durante o rating, sem ocupar a tela.
+            html += "<details style='margin:0 0 14px;'><summary style='cursor:pointer;color:#4527a0;'>Rever as definições das emoções</summary>" +
+                emoLegend() + "</details>";
+        }
+        step.items.forEach((it, idx) => {
+            // `training_target_emotion` sobrepõe o alvo só no treino: a âncora
+            // de piso é um clipe neutro, e o alvo informado precisa ser uma
+            // emoção que fala neutra claramente NÃO expressa.
+            const emoKey = (step.training && it.training_target_emotion) || it.target_emotion;
+            const emo = EMO_PT[emoKey] || emoKey;
+            // Naturalidade só nas utterances sorteadas (protocolo v4 §2). O
+            // manifest decide, e as duas condições de uma utterance entram ou
+            // saem juntas, senão o par do TOST se perde.
+            const askNat = it.ask_naturalness !== false;
+            html += '<div class="item-card">' +
+                '<div class="item-header"><div class="item-title">Áudio ' + (idx + 1) + " de " + step.items.length + "</div>" +
+                '<div class="emotion-badge">Emoção-alvo: ' + emo + "</div></div>" +
+                audioEl(it.id, it.audio) +
+                '<div class="question"><div class="q-text">1. Quão bem esta fala expressa <span class="emo">' + emo + "</span>?</div>" +
+                ratingRadios("emos_" + it.id, EMOS_SCALE) + "</div>" +
+                (askNat
+                    ? '<div class="question"><div class="q-text">2. Como você avalia a <span class="emo">naturalidade</span> desta fala?</div>' +
+                      ratingRadios("nat_" + it.id, [["1", "Péssima"], ["2", "Ruim"], ["3", "Regular"], ["4", "Boa"], ["5", "Excelente"]]) +
+                      "</div>"
+                    : "") +
+                "</div>";
+        });
+        html += '<div class="error-box" id="errorBox"></div>' +
+            '<div class="navigation"><button class="nav btn-next" onclick="window.submitRatingPage()">Enviar página e continuar</button></div>';
+        $app.innerHTML = html;
+    }
+    function ratingRadios(name, valueLabels) {
+        return '<div class="rating-group">' + valueLabels.map(([v, lab]) =>
+            '<div class="rating-option"><input type="radio" id="' + name + "_" + v + '" name="' + name + '" value="' + v + '">' +
+            '<label class="rating-label" for="' + name + "_" + v + '">' + v + (lab ? "<small>" + lab + "</small>" : "") + "</label></div>"
+        ).join("") + "</div>";
+    }
+    window.submitRatingPage = async function () {
+        const step = session.steps[stepIndex];
+        const recs = [];
+        for (let i = 0; i < step.items.length; i++) {
+            const it = step.items[i];
+            const askNat = it.ask_naturalness !== false;
+            const emos = document.querySelector('input[name="emos_' + it.id + '"]:checked');
+            const nat = askNat ? document.querySelector('input[name="nat_' + it.id + '"]:checked') : null;
+            const st = statsFor(it.id);
+            if (!emos || (askNat && !nat)) return showError("Responda todas as perguntas dos áudios (faltou o áudio " + (i + 1) + ").");
+            if (st.plays < 1 && !DEBUG) return showError("Ouça o áudio " + (i + 1) + " até o fim antes de enviar.");
+            recs.push({ id: it.id, pos: i, emos: Number(emos.value),
+                        nat: nat ? Number(nat.value) : null, asked_nat: askNat,
+                        plays: st.plays, played_ms: st.played_ms });
+        }
+        await submitStep("rating_page", step.id, {
+            block: step.block, page_index: step.pageIndex, training: !!step.training,
+            shown_at: stepShownAt, submitted_at: new Date().toISOString(),
+            min_audio_s: Math.round(step.items.reduce((s, it) => s + (it.duration_s || 0), 0) * 10) / 10,
+            items: recs, debug: DEBUG,
+        });
+        advance();
+    };
+
+    // ---------- Tela: pausa entre blocos ----------
+    function renderPause() {
+        $app.innerHTML = '<div class="center-screen"><h2>Fim do primeiro bloco 🎉</h2>' +
+            "<p>Se quiser, faça uma pausa curta agora (mantenha esta aba aberta). Quando estiver pronto, continue para o segundo bloco.</p>" +
+            '<div class="navigation" style="justify-content:center;"><button class="nav btn-next" onclick="window.skipPause()">Continuar</button></div></div>';
+    }
+    window.skipPause = async function () {
+        const step = session.steps[stepIndex];
+        await submitStep("pause", step.id, { shown_at: stepShownAt, resumed_at: new Date().toISOString(), debug: DEBUG });
+        advance();
+    };
+
+    // ---------- Tela: introdução + exemplo do ESA ----------
+    function renderEsaIntro() {
+        const ex = manifest.esa_example_pair;
+        const a = session.byId[ex.a], b = session.byId[ex.b];
+        const emo = EMO_PT[ex.target_emotion] || ex.target_emotion;
+        $app.innerHTML =
+            "<h2>Última parte: comparação de pares</h2>" +
+            '<div class="notice">Agora você ouvirá <strong>pares</strong> de áudios com a <strong>mesma frase</strong>. Para cada par, escolha qual dos dois transmite melhor a emoção indicada. É obrigatório escolher um: não há empate.</div>' +
+            "<p style='margin-bottom:14px;'><strong>Exemplo</strong> (não conta): qual das duas transmite melhor <span class='emo' style='font-weight:700;color:#4527a0;'>" + emo + "</span>?</p>" +
+            '<div class="pair-grid">' +
+            '<div class="pair-cell"><div class="pair-name">Áudio A</div>' + audioEl(a.id, a.audio) + "</div>" +
+            '<div class="pair-cell"><div class="pair-name">Áudio B</div>' + audioEl(b.id, b.audio) + "</div>" +
+            "</div>" +
+            '<div class="pair-choice">' +
+            '<button class="choice-btn" id="exA" onclick="window.pickExample(\'a\')">Áudio A</button>' +
+            '<button class="choice-btn" id="exB" onclick="window.pickExample(\'b\')">Áudio B</button>' +
+            "</div>" +
+            '<div class="error-box" id="errorBox"></div>' +
+            '<div class="navigation"><button class="nav btn-next" onclick="window.submitEsaIntro()">Começar as comparações</button></div>';
+        session.exampleChoice = null;
+    }
+    window.pickExample = function (which) {
+        session.exampleChoice = which;
+        document.getElementById("exA").classList.toggle("selected", which === "a");
+        document.getElementById("exB").classList.toggle("selected", which === "b");
+    };
+    window.submitEsaIntro = async function () {
+        const ex = manifest.esa_example_pair;
+        if (!session.exampleChoice && !DEBUG) return showError("Escolha um dos dois áudios do exemplo.");
+        await submitStep("esa_page", "esa_intro", {
+            page_index: -1, counts: false,
+            shown_at: stepShownAt, submitted_at: new Date().toISOString(),
+            pairs: [{ pair_id: "example", a: ex.a, b: ex.b, first: "a", chosen: session.exampleChoice ? ex[session.exampleChoice] : null,
+                      a_audio: statsFor(ex.a), b_audio: statsFor(ex.b) }],
+            debug: DEBUG,
+        });
+        advance();
+    };
+
+    // ---------- Tela: página de pares ESA ----------
+    function renderEsaPage(step) {
+        let html = '<div class="block-header"><h2>Comparações, página ' + (step.pageIndex + 1) + " de " + step.pageCount + "</h2></div>";
+        step.pairs.forEach((entry, idx) => {
+            const p = entry.pair;
+            const firstId = entry.swap ? p.b : p.a;
+            const secondId = entry.swap ? p.a : p.b;
+            const A = session.byId[firstId], B = session.byId[secondId];
+            const emo = EMO_PT[p.target_emotion] || p.target_emotion;
+            html += '<div class="item-card" data-pair="' + p.pair_id + '">' +
+                '<div class="item-header"><div class="item-title">Par ' + (idx + 1) + " de " + step.pairs.length + "</div>" +
+                '<div class="emotion-badge">Emoção: ' + emo + "</div></div>" +
+                '<div class="q-text" style="margin-bottom:8px;">Qual das duas transmite melhor <span class="emo">' + emo + "</span>?</div>" +
+                '<div class="pair-grid">' +
+                '<div class="pair-cell"><div class="pair-name">Áudio A</div>' + audioEl(A.id, A.audio) + "</div>" +
+                '<div class="pair-cell"><div class="pair-name">Áudio B</div>' + audioEl(B.id, B.audio) + "</div>" +
+                "</div>" +
+                '<div class="pair-choice">' +
+                '<button class="choice-btn" data-choice="first" onclick="window.pickPair(this)">Áudio A</button>' +
+                '<button class="choice-btn" data-choice="second" onclick="window.pickPair(this)">Áudio B</button>' +
+                "</div></div>";
+        });
+        html += '<div class="error-box" id="errorBox"></div>' +
+            '<div class="navigation"><button class="nav btn-next" onclick="window.submitEsaPage()">Enviar página e continuar</button></div>';
+        $app.innerHTML = html;
+    }
+    window.pickPair = function (btn) {
+        const card = btn.closest(".item-card");
+        card.querySelectorAll(".choice-btn").forEach((b) => b.classList.remove("selected"));
+        btn.classList.add("selected");
+    };
+    window.submitEsaPage = async function () {
+        const step = session.steps[stepIndex];
+        const recs = [];
+        for (let i = 0; i < step.pairs.length; i++) {
+            const entry = step.pairs[i];
+            const p = entry.pair;
+            const card = $app.querySelector('.item-card[data-pair="' + p.pair_id + '"]');
+            const sel = card.querySelector(".choice-btn.selected");
+            const firstId = entry.swap ? p.b : p.a;
+            const secondId = entry.swap ? p.a : p.b;
+            const stA = statsFor(firstId), stB = statsFor(secondId);
+            if (!sel && !DEBUG) return showError("Escolha um áudio no par " + (i + 1) + ".");
+            if ((stA.plays < 1 || stB.plays < 1) && !DEBUG) return showError("Ouça os dois áudios do par " + (i + 1) + " até o fim.");
+            const chosenId = sel ? (sel.dataset.choice === "first" ? firstId : secondId) : null;
+            recs.push({
+                pair_id: p.pair_id, a: p.a, b: p.b, first_shown: firstId, chosen: chosenId,
+                first_audio: stA, second_audio: stB,
+            });
+        }
+        await submitStep("esa_page", step.id, {
+            page_index: step.pageIndex, counts: true,
+            shown_at: stepShownAt, submitted_at: new Date().toISOString(),
+            min_audio_s: Math.round(step.pairs.reduce((s, e) => {
+                const a = session.byId[e.pair.a], b = session.byId[e.pair.b];
+                return s + (a ? a.duration_s : 0) + (b ? b.duration_s : 0);
+            }, 0) * 10) / 10,
+            pairs: recs, debug: DEBUG,
+        });
+        advance();
+    };
+
+    // ---------- Tela: encerramento ----------
+    function renderFinal() {
+        if (store.finished) { renderThanks(); return; }
+        $app.innerHTML =
+            '<div class="center-screen"><h1>Última etapa!</h1>' +
+            "<p>Se quiser, deixe um comentário livre (algo que chamou atenção, dificuldade, sugestão):</p>" +
+            '<div class="form-block"><div class="form-group"><textarea id="finalComments" rows="4" placeholder="Opcional"></textarea></div></div>' +
+            '<div class="error-box" id="errorBox"></div>' +
+            '<div class="navigation" style="justify-content:center;"><button class="nav btn-submit" onclick="window.submitFinal()">Concluir avaliação</button></div></div>';
+    }
+    window.submitFinal = async function () {
+        const code = "MOS-" + raterSeed + "-" + Date.now().toString(36).toUpperCase();
+        store.confirmationCode = code;
+        await submitStep("final", "final", {
+            shown_at: stepShownAt, submitted_at: new Date().toISOString(),
+            comments: (document.getElementById("finalComments").value || "").trim() || null,
+            confirmation_code: code, started_at: store.started_at,
+            steps_completed: Object.keys(store.steps).length, debug: DEBUG,
+        });
+        store.finished = true;
+        saveStore();
+        renderThanks();
+    };
+    function renderThanks() {
+        const pendingN = store.pending.length;
+        $app.innerHTML =
+            '<div class="center-screen"><h1>Avaliação concluída! 🎉</h1>' +
+            '<p style="font-size:18px;color:#4CAF50;">✅ Muito obrigado pela sua participação.</p>' +
+            '<div class="warning" style="margin-top:24px;text-align:left;"><strong>Código de confirmação:</strong> ' + (store.confirmationCode || "-") + "<br>Anote este código como comprovante de participação.</div>" +
+            (pendingN > 0
+                ? '<div class="error-box" style="display:block;text-align:left;">' + pendingN + ' respostas ainda não foram enviadas ao servidor (sem conexão?). <strong>Não feche esta aba:</strong> tente novamente ou baixe o backup e envie ao pesquisador.<br><br><button class="nav btn-next" onclick="window.retryPending()">Tentar reenviar</button> <button class="nav btn-submit" onclick="window.doBackup()">Baixar backup (JSON)</button></div>'
+                : "") +
+            (isLocal() ? '<div class="notice" style="text-align:left;">Execução local: os dados não foram enviados. <button class="nav btn-submit" onclick="window.doBackup()">Baixar JSON</button></div>' : "") +
+            "</div>";
+        document.getElementById("progressContainer").style.display = "none";
+    }
+    window.retryPending = async function () { await flushPending(); renderThanks(); };
+    window.doBackup = function () { downloadBackup(); };
+
+    // ================= Boot =================
+    async function boot() {
+        const r = params.get("r");
+        if (!r || !/^\d+$/.test(r) || params.get("new") === "1") {
+            // sem código no link: sorteia um e recarrega já com ele no URL,
+            // para que a sessão continue reproduzível a partir da barra de
+            // endereço (randomização, contrabalanceamento e retomada).
+            const s = assignSeed();
+            location.replace("?r=" + s + (DEBUG ? "&debug=1" : ""));
+            return;
+        }
+        raterSeed = r;
+
+        try {
+            const resp = await fetch("manifest.json");
+            manifest = await resp.json();
+        } catch (e) {
+            $app.innerHTML = '<div class="warning">Erro ao carregar os dados do teste. Recarregue a página; se persistir, avise o pesquisador.</div>';
+            return;
         }
 
-        // Fallback download function
-        function downloadResults(data) {
-            // Criar blob com os dados
-            const dataStr = JSON.stringify(data, null, 2);
-            const dataBlob = new Blob([dataStr], {type: 'application/json'});
-            
-            // Criar link de download
-            const url = URL.createObjectURL(dataBlob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = `tts_eval_${data.participant.id}_${Date.now()}.json`;
-            
-            // Trigger download
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
-            
-            // Também salvar no localStorage como backup
-            localStorage.setItem('tts_eval_' + data.confirmationCode, dataStr);
+        store = loadStore();
+        saveStore();
+        session = assembleSession();
+        // Áudio de ajuste de volume no check de fones. Usa a antiga âncora
+        // mediana, que saiu do treino na v4 e por isso não é mais estímulo de
+        // nada: bom material de referência, sem dupla função.
+        const median = manifest.items.find((i) => i.training_anchor === "synth_median") || manifest.items[0];
+        session.volumeAdjustSrc = median.audio;
+
+        if (DEBUG) {
+            const db = document.getElementById("debugBanner");
+            db.style.display = "block";
+            db.textContent = "DEBUG · seed " + raterSeed + " · ordem " + (session.enFirst ? "EN→PT" : "PT→EN") +
+                " · " + session.steps.length + " etapas (validações de áudio desativadas; payloads marcados debug=true)";
         }
 
-        // Atalhos de teclado
-        document.addEventListener('keydown', (e) => {
-            if (document.getElementById('evaluationScreen').style.display === 'block') {
-                // Números 1-5 para avaliações rápidas
-                if (e.key >= '1' && e.key <= '5') {
-                    const num = e.key;
-                    // Focar na primeira pergunta sem resposta
-                    if (!document.querySelector('input[name="mos"]:checked')) {
-                        document.getElementById(`mos${num}`).click();
-                        checkMOSAndShowReference(); // Mostrar referência após selecionar MOS
-                    } else if (!document.querySelector('input[name="spksim"]:checked')) {
-                        document.getElementById(`spk${num}`).click();
-                    } else if (!document.querySelector('input[name="emosim"]:checked')) {
-                        document.getElementById(`emo${num}`).click();
-                    }
-                }
-                
-                // R para tocar áudio de referência
-                if (e.key === 'r' || e.key === 'R') {
-                    e.preventDefault();
-                    const refAudio = document.getElementById('referenceAudio');
-                    if (refAudio.paused) {
-                        refAudio.play();
-                    } else {
-                        refAudio.pause();
-                    }
-                }
-                
-                // S para tocar áudio sintetizado
-                if (e.key === 's' || e.key === 'S') {
-                    e.preventDefault();
-                    const synthAudio = document.getElementById('synthesizedAudio');
-                    if (synthAudio.paused) {
-                        synthAudio.play();
-                    } else {
-                        synthAudio.pause();
-                    }
-                }
-                
-                // Enter para próxima (se tudo preenchido)
-                if (e.key === 'Enter') {
-                    const allFilled = document.querySelector('input[name="mos"]:checked') &&
-                                    document.querySelector('input[name="spksim"]:checked') &&
-                                    document.querySelector('input[name="emosim"]:checked');
-                    if (allFilled) {
-                        nextSample();
-                    }
-                }
-            }
-        });
+        // Retomada: primeiro passo ainda não concluído
+        stepIndex = 0;
+        for (let i = 0; i < session.steps.length; i++) {
+            if (store.steps[session.steps[i].id] && store.steps[session.steps[i].id].done) stepIndex = i + 1;
+            else break;
+        }
+        if (store.finished || stepIndex >= session.steps.length) { stepIndex = session.steps.length - 1; store.finished = true; renderThanks(); return; }
+        if (stepIndex > 0) {
+            const cont = session.steps[stepIndex];
+            $app.innerHTML = '<div class="center-screen"><h1>Bem-vindo(a) de volta!</h1>' +
+                "<p>Encontramos seu progresso salvo neste navegador. Você continuará de onde parou (etapa " + (stepIndex + 1) + " de " + session.steps.length + ").</p>" +
+                '<div class="navigation" style="justify-content:center;"><button class="nav btn-next" onclick="window.resumeNow()">Continuar</button></div></div>';
+            window.resumeNow = function () { render(); };
+            flushPending();
+            return;
+        }
+        render();
+    }
 
-        // Prevenir fechamento acidental da página
-        window.addEventListener('beforeunload', (e) => {
-            if (document.getElementById('evaluationScreen').style.display === 'block') {
-                e.preventDefault();
-                e.returnValue = 'Você tem uma avaliação em andamento. Tem certeza que deseja sair?';
-            }
-        });
+    window.addEventListener("beforeunload", (e) => {
+        if (store && !store.finished && stepIndex > 0) { e.preventDefault(); e.returnValue = ""; }
+    });
+
+    // Bloqueio de retorno (protocolo v4): a sonda de conteúdo só vale se o
+    // áudio anterior estiver inalcançável. A página já é submetida por vez,
+    // mas o botão "voltar" do navegador reexibiria a anterior.
+    window.addEventListener("popstate", () => {
+        history.pushState(null, "", location.href);
+        if (session && !(store && store.finished)) {
+            showError("Não é possível voltar: as respostas da página anterior já foram enviadas.");
+        }
+    });
+    history.pushState(null, "", location.href);
+
+    boot();
     </script>
 </body>
 </html>

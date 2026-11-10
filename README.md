@@ -1,81 +1,28 @@
-# TTS Evaluation System
+# tts-eval — listening test mini-MOS (ICASSP 2027)
 
-A web-based system for evaluating Text-to-Speech (TTS) quality through perceptual listening tests, with built-in data analysis tools.
+UI web estática para o listening test do protocolo v3 (P.808 adaptado a painel voluntário): EMOS 1–5 + naturalidade ACR 1–5 por item, bloco final ESA (pares A/B), check de fones, treino, trapping/gold, submissão parcial por página via Netlify Forms e retomada por seed/localStorage.
 
-## Features
+A versão anterior desta UI (avaliação do PROPOR: MOS/spk-sim/emo-sim, submit único) está no histórico git (`git log -- index.html`).
 
-- **Blind evaluation** of TTS models (VECL vs CML)
-- **Multi-dimensional rating**: MOS, Speaker Similarity, Emotion Similarity
-- **Cross-lingual evaluation**: EN→PT, PT→EN, same-language
-- **Modern UI** with progress tracking and keyboard shortcuts
-- **Automatic result collection** (when deployed to Netlify)
-- **Data analysis tools** for processing evaluation results
+## Como funciona
 
-## Live Demo
+- `index.html` — app único, vanilla JS, sem build. Lê `manifest.json` e monta a sessão deterministicamente a partir da seed do rater (`?r=<int>` no URL do convite): ordem dos itens, paginação, counterbalancing PT/EN (paridade da seed) e ordem intra-par do ESA.
+- `manifest.json` + `audio/*.wav` — estímulos cegos (111 wavs, loudnorm −26, ids hasheados), gerados por `scripts/mos_power/select_stimuli.py` (repo qwen3-tts, seed 20260721). O mapping id→condição fica **fora** deste repo (`data/experiments/mos_stimuli/private/`).
+- Cada página enviada = uma submissão do form `mos-eval` no Netlify. Schema completo e regras de retomada/fallback: [`docs/PAYLOAD.md`](docs/PAYLOAD.md).
+- `?debug=1` — desativa validações de escuta e marca os payloads com `debug: true` (descartados na análise).
 
-The evaluation system is already deployed and available at: **[TTS Evaluation System](https://fascinating-licorice-a86265.netlify.app/)**
+## Pendências antes do campo
 
-Results are automatically collected via Netlify Forms.
+- Gravar os 4 trappings, o trapping-pair do ESA e os 2 trials do check de fones; preencher os `placeholders` do manifest (campos esperados em `docs/PAYLOAD.md`) e recopiar os wavs.
+- Piloto com 2 pessoas (~11–15/08); staging no Netlify até ~04/08 valida o submit parcial via Forms.
 
-## Local Development
+## Desenvolvimento local
+
 ```bash
-uv run python -m http.server 8000
-# Visit: http://localhost:8000
+python3 -m http.server 8000
+# http://localhost:8000/?r=1017  (local não envia ao Netlify; exporta JSON no fim)
 ```
 
-## File Structure
-```
-tts-eval/
-├── index.html          # Main evaluation interface
-├── src/
-│   └── prep_eval_data.py # Data processing utilities
-├── notebooks/          # Analysis notebooks
-├── audio/              # Audio samples
-│   ├── refs/          # Reference recordings
-│   ├── vecl/          # VECL model outputs  
-│   └── cml/           # CML model outputs
-├── netlify.toml       # Netlify configuration
-└── DEPLOYMENT.md      # Detailed deployment guide
-```
+## Deploy
 
-## Evaluation Protocol
-
-1. **Quality (MOS)**: Rate naturalness (1-5 scale)
-2. **Speaker Similarity**: Compare synthesized vs reference voice
-3. **Emotion Similarity**: Compare emotional expression
-
-**32 samples total** • **~20 minutes** • **Requires headphones**
-
-## Results Collection
-
-- **Netlify**: Automatic form submission + CSV export
-- **Other platforms**: JSON file downloads
-
-## For Researchers
-
-The system implements a blind evaluation protocol comparing:
-- **VECL** vs **CML** models
-- **Cross-lingual** vs **same-language** synthesis
-- **Multiple emotions**: neutral, happy, sad, angry
-- **Multiple speakers**: RAVDESS + custom Portuguese speakers
-
-Results include evaluation times, presentation order, and hidden metadata for analysis.
-
-## Data Analysis
-
-After collecting evaluation results, use the provided analysis tools:
-
-### Processing Results
-```bash
-# Install dependencies
-uv sync
-
-# Process evaluation data
-uv run python -c "from src.prep_eval_data import prep_eval_data; df = prep_eval_data(); print(df.groupby('model')['quality'].mean())"
-```
-
-### Analysis Features
-- **Automatic data parsing** from Netlify form submissions or JSON files
-- **Quality metrics** aggregation by model, emotion, and language pair
-- **Statistical analysis** of MOS scores, speaker similarity, and emotion similarity
-- **Cross-lingual comparison** between EN→PT, PT→EN, and same-language synthesis
+Netlify via CLI ou drag-and-drop (site já existente, coleta via Netlify Forms). O form `mos-eval` é declarado estaticamente no HTML — o Netlify o detecta no deploy.

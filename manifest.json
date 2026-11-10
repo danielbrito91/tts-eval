@@ -1,0 +1,1684 @@
+{
+  "version": 1,
+  "seed": 20260721,
+  "generator": "scripts/mos_power/select_stimuli.py",
+  "loudnorm": {
+    "i": -26.0,
+    "tp": -1.5,
+    "lra": 11.0,
+    "sample_rate": 24000,
+    "fade_s": 0.02
+  },
+  "scales": {
+    "emos": "1-5",
+    "naturalness_acr": "1-5"
+  },
+  "content_probes": {
+    "n_pt": 2,
+    "n_en": 2,
+    "n_options": 4
+  },
+  "esa_enabled": false,
+  "items": [
+    {
+      "id": "d4bb3d3c8d",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "angry",
+      "audio": "audio/d4bb3d3c8d.wav",
+      "duration_s": 4.64,
+      "is_gold": false,
+      "text": "Já chega! Eu vou tomar um banho e ir para a cama.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "7a75979cf1",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "angry",
+      "audio": "audio/7a75979cf1.wav",
+      "duration_s": 5.2,
+      "is_gold": false,
+      "text": "Já chega! Eu vou tomar um banho e ir para a cama.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "42bc0c3193",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "angry",
+      "audio": "audio/42bc0c3193.wav",
+      "duration_s": 2.16,
+      "is_gold": false,
+      "text": "Não importa quem está certo.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "769b754556",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "angry",
+      "audio": "audio/769b754556.wav",
+      "duration_s": 1.84,
+      "is_gold": false,
+      "text": "Não importa quem está certo.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "55dddb84f1",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "angry",
+      "audio": "audio/55dddb84f1.wav",
+      "duration_s": 4.08,
+      "is_gold": false,
+      "text": "Nos fins de semana, eu sempre ia para a casa dele.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "44a08d750d",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "angry",
+      "audio": "audio/44a08d750d.wav",
+      "duration_s": 4.56,
+      "is_gold": false,
+      "text": "Nos fins de semana, eu sempre ia para a casa dele.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "32898cc8cb",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "angry",
+      "audio": "audio/32898cc8cb.wav",
+      "duration_s": 1.92,
+      "is_gold": false,
+      "text": "A garrafa está na geladeira.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "7ee8613d52",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "angry",
+      "audio": "audio/7ee8613d52.wav",
+      "duration_s": 2.48,
+      "is_gold": false,
+      "text": "A garrafa está na geladeira.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "eef677b99a",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "angry",
+      "audio": "audio/eef677b99a.wav",
+      "duration_s": 3.2,
+      "is_gold": false,
+      "text": "Você perde tempo demais com a Internet.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "662d4bec7d",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "angry",
+      "audio": "audio/662d4bec7d.wav",
+      "duration_s": 3.76,
+      "is_gold": false,
+      "text": "Você perde tempo demais com a Internet.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "9c39fac4ed",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "angry",
+      "audio": "audio/9c39fac4ed.wav",
+      "duration_s": 2.125,
+      "is_gold": true,
+      "text": "A garrafa está na geladeira.",
+      "ask_naturalness": false,
+      "active": true,
+      "expected": {
+        "scale": "emos",
+        "min": 4
+      }
+    },
+    {
+      "id": "b701624f59",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "angry",
+      "audio": "audio/b701624f59.wav",
+      "duration_s": 4.059,
+      "is_gold": false,
+      "text": "Já chega! Eu vou tomar um banho e ir para a cama.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "15cde6bc8f",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "happy",
+      "audio": "audio/15cde6bc8f.wav",
+      "duration_s": 3.76,
+      "is_gold": false,
+      "text": "Já chega! Eu vou tomar um banho e ir para a cama.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "44973fd88f",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "happy",
+      "audio": "audio/44973fd88f.wav",
+      "duration_s": 5.04,
+      "is_gold": false,
+      "text": "Já chega! Eu vou tomar um banho e ir para a cama.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "765a15b780",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "happy",
+      "audio": "audio/765a15b780.wav",
+      "duration_s": 2.48,
+      "is_gold": false,
+      "text": "Não importa quem está certo.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "95dc819b6f",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "happy",
+      "audio": "audio/95dc819b6f.wav",
+      "duration_s": 2.08,
+      "is_gold": false,
+      "text": "Não importa quem está certo.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "01accb92a9",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "happy",
+      "audio": "audio/01accb92a9.wav",
+      "duration_s": 4.48,
+      "is_gold": false,
+      "text": "Nos fins de semana, eu sempre ia para a casa dele.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "e6cd014c47",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "happy",
+      "audio": "audio/e6cd014c47.wav",
+      "duration_s": 4.0,
+      "is_gold": false,
+      "text": "Nos fins de semana, eu sempre ia para a casa dele.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "0a45955195",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "happy",
+      "audio": "audio/0a45955195.wav",
+      "duration_s": 2.48,
+      "is_gold": false,
+      "text": "A garrafa está na geladeira.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "7d37fd5838",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "happy",
+      "audio": "audio/7d37fd5838.wav",
+      "duration_s": 2.64,
+      "is_gold": false,
+      "text": "A garrafa está na geladeira.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "62f76aa4d2",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "happy",
+      "audio": "audio/62f76aa4d2.wav",
+      "duration_s": 2.32,
+      "is_gold": false,
+      "text": "Ele volta na quarta-feira.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "89d45698bd",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "happy",
+      "audio": "audio/89d45698bd.wav",
+      "duration_s": 2.64,
+      "is_gold": false,
+      "text": "Ele volta na quarta-feira.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "dec6d62ca2",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "happy",
+      "audio": "audio/dec6d62ca2.wav",
+      "duration_s": 4.487,
+      "is_gold": true,
+      "text": "Nos fins de semana, eu sempre ia para a casa dele.",
+      "ask_naturalness": false,
+      "active": true,
+      "expected": {
+        "scale": "emos",
+        "min": 4
+      }
+    },
+    {
+      "id": "6d9dd0c3f9",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "happy",
+      "audio": "audio/6d9dd0c3f9.wav",
+      "duration_s": 2.99,
+      "is_gold": false,
+      "text": "Não importa quem está certo.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "011da174c7",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "sad",
+      "audio": "audio/011da174c7.wav",
+      "duration_s": 4.56,
+      "is_gold": false,
+      "text": "Já chega! Eu vou tomar um banho e ir para a cama.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "263850bc86",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "sad",
+      "audio": "audio/263850bc86.wav",
+      "duration_s": 4.24,
+      "is_gold": false,
+      "text": "Já chega! Eu vou tomar um banho e ir para a cama.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "21a250c74b",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "sad",
+      "audio": "audio/21a250c74b.wav",
+      "duration_s": 4.48,
+      "is_gold": false,
+      "text": "Nos fins de semana, eu sempre ia para a casa dele.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "f4a9184890",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "sad",
+      "audio": "audio/f4a9184890.wav",
+      "duration_s": 4.56,
+      "is_gold": false,
+      "text": "Nos fins de semana, eu sempre ia para a casa dele.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "a835afe7a8",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "sad",
+      "audio": "audio/a835afe7a8.wav",
+      "duration_s": 3.92,
+      "is_gold": false,
+      "text": "De quem são essas malas que estão debaixo da mesa?",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "c515422e43",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "sad",
+      "audio": "audio/c515422e43.wav",
+      "duration_s": 3.76,
+      "is_gold": false,
+      "text": "De quem são essas malas que estão debaixo da mesa?",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "332583af1d",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "sad",
+      "audio": "audio/332583af1d.wav",
+      "duration_s": 2.72,
+      "is_gold": false,
+      "text": "Ele volta na quarta-feira.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "f5a9b0ccf8",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "sad",
+      "audio": "audio/f5a9b0ccf8.wav",
+      "duration_s": 2.48,
+      "is_gold": false,
+      "text": "Ele volta na quarta-feira.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "20dc86e49f",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "sad",
+      "audio": "audio/20dc86e49f.wav",
+      "duration_s": 2.72,
+      "is_gold": false,
+      "text": "Eu estou um pouco atrasado.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "b28d728ad4",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "sad",
+      "audio": "audio/b28d728ad4.wav",
+      "duration_s": 2.56,
+      "is_gold": false,
+      "text": "Eu estou um pouco atrasado.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "03881e714d",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "sad",
+      "audio": "audio/03881e714d.wav",
+      "duration_s": 2.777,
+      "is_gold": true,
+      "text": "Ele volta na quarta-feira.",
+      "ask_naturalness": false,
+      "active": true,
+      "expected": {
+        "scale": "emos",
+        "min": 4
+      }
+    },
+    {
+      "id": "61a19810dc",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "sad",
+      "audio": "audio/61a19810dc.wav",
+      "duration_s": 4.471,
+      "is_gold": false,
+      "text": "De quem são essas malas que estão debaixo da mesa?",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "debc31bcea",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "angry",
+      "audio": "audio/debc31bcea.wav",
+      "duration_s": 3.44,
+      "is_gold": false,
+      "text": "Eu estou me sentindo doente hoje.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "885366c69a",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "angry",
+      "audio": "audio/885366c69a.wav",
+      "duration_s": 2.8,
+      "is_gold": false,
+      "text": "Eu estou me sentindo doente hoje.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "8e01dd1a8a",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "angry",
+      "audio": "audio/8e01dd1a8a.wav",
+      "duration_s": 3.12,
+      "is_gold": false,
+      "text": "Você perde tempo demais com a Internet.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "954e7fc8a1",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "angry",
+      "audio": "audio/954e7fc8a1.wav",
+      "duration_s": 3.44,
+      "is_gold": false,
+      "text": "Você perde tempo demais com a Internet.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "36ad908829",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "angry",
+      "audio": "audio/36ad908829.wav",
+      "duration_s": 3.52,
+      "is_gold": false,
+      "text": "De quem são essas malas que estão debaixo da mesa?",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "5fcd420a58",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "angry",
+      "audio": "audio/5fcd420a58.wav",
+      "duration_s": 4.56,
+      "is_gold": false,
+      "text": "De quem são essas malas que estão debaixo da mesa?",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "3b10f0e38a",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "angry",
+      "audio": "audio/3b10f0e38a.wav",
+      "duration_s": 1.84,
+      "is_gold": false,
+      "text": "Ele volta na quarta-feira.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "5b4187a96c",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "angry",
+      "audio": "audio/5b4187a96c.wav",
+      "duration_s": 1.84,
+      "is_gold": false,
+      "text": "Ele volta na quarta-feira.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "307608ee39",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "angry",
+      "audio": "audio/307608ee39.wav",
+      "duration_s": 2.0,
+      "is_gold": false,
+      "text": "Eu estou um pouco atrasado.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "8d4b6e107e",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "angry",
+      "audio": "audio/8d4b6e107e.wav",
+      "duration_s": 2.8,
+      "is_gold": false,
+      "text": "Eu estou um pouco atrasado.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "8f68b06037",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "angry",
+      "audio": "audio/8f68b06037.wav",
+      "duration_s": 3.804,
+      "is_gold": true,
+      "text": "De quem são essas malas que estão debaixo da mesa?",
+      "ask_naturalness": false,
+      "active": true,
+      "expected": {
+        "scale": "emos",
+        "min": 4
+      }
+    },
+    {
+      "id": "5294a7ee20",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "angry",
+      "audio": "audio/5294a7ee20.wav",
+      "duration_s": 3.066,
+      "is_gold": false,
+      "text": "Eu estou me sentindo doente hoje.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "a8966aad98",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "happy",
+      "audio": "audio/a8966aad98.wav",
+      "duration_s": 3.04,
+      "is_gold": false,
+      "text": "Você poderia arrumar a mesa, por favor?",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "a6bcc8d53c",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "happy",
+      "audio": "audio/a6bcc8d53c.wav",
+      "duration_s": 2.4,
+      "is_gold": false,
+      "text": "Você poderia arrumar a mesa, por favor?",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "eabae0dfd5",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "happy",
+      "audio": "audio/eabae0dfd5.wav",
+      "duration_s": 2.96,
+      "is_gold": false,
+      "text": "Eu estou me sentindo doente hoje.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "e406addfea",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "happy",
+      "audio": "audio/e406addfea.wav",
+      "duration_s": 3.28,
+      "is_gold": false,
+      "text": "Eu estou me sentindo doente hoje.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "2f1f9f702f",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "happy",
+      "audio": "audio/2f1f9f702f.wav",
+      "duration_s": 2.4,
+      "is_gold": false,
+      "text": "A garrafa está na geladeira.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "863ddc3d46",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "happy",
+      "audio": "audio/863ddc3d46.wav",
+      "duration_s": 2.88,
+      "is_gold": false,
+      "text": "A garrafa está na geladeira.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "5f2ee157f7",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "happy",
+      "audio": "audio/5f2ee157f7.wav",
+      "duration_s": 2.72,
+      "is_gold": false,
+      "text": "De quem são essas malas que estão debaixo da mesa?",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "bab7035097",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "happy",
+      "audio": "audio/bab7035097.wav",
+      "duration_s": 4.0,
+      "is_gold": false,
+      "text": "De quem são essas malas que estão debaixo da mesa?",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "5cc57c1a5b",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "happy",
+      "audio": "audio/5cc57c1a5b.wav",
+      "duration_s": 2.08,
+      "is_gold": false,
+      "text": "Eu estou um pouco atrasado.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "0db0dafcab",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "happy",
+      "audio": "audio/0db0dafcab.wav",
+      "duration_s": 2.8,
+      "is_gold": false,
+      "text": "Eu estou um pouco atrasado.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "bb38b657b7",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "happy",
+      "audio": "audio/bb38b657b7.wav",
+      "duration_s": 3.477,
+      "is_gold": true,
+      "text": "De quem são essas malas que estão debaixo da mesa?",
+      "ask_naturalness": false,
+      "active": true,
+      "expected": {
+        "scale": "emos",
+        "min": 4
+      }
+    },
+    {
+      "id": "a21bf45382",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "happy",
+      "audio": "audio/a21bf45382.wav",
+      "duration_s": 2.622,
+      "is_gold": false,
+      "text": "Eu estou me sentindo doente hoje.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "036bdbdc1b",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "sad",
+      "audio": "audio/036bdbdc1b.wav",
+      "duration_s": 2.4,
+      "is_gold": false,
+      "text": "Você poderia arrumar a mesa, por favor?",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "699efce81f",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "sad",
+      "audio": "audio/699efce81f.wav",
+      "duration_s": 3.04,
+      "is_gold": false,
+      "text": "Você poderia arrumar a mesa, por favor?",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "276322f8da",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "sad",
+      "audio": "audio/276322f8da.wav",
+      "duration_s": 3.36,
+      "is_gold": false,
+      "text": "Já chega! Eu vou tomar um banho e ir para a cama.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "4b1fab95a9",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "sad",
+      "audio": "audio/4b1fab95a9.wav",
+      "duration_s": 3.6,
+      "is_gold": false,
+      "text": "Já chega! Eu vou tomar um banho e ir para a cama.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "b92703c09a",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "sad",
+      "audio": "audio/b92703c09a.wav",
+      "duration_s": 1.84,
+      "is_gold": false,
+      "text": "Não importa quem está certo.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "79d502508c",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "sad",
+      "audio": "audio/79d502508c.wav",
+      "duration_s": 2.16,
+      "is_gold": false,
+      "text": "Não importa quem está certo.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "7f7f8e16b0",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "sad",
+      "audio": "audio/7f7f8e16b0.wav",
+      "duration_s": 3.12,
+      "is_gold": false,
+      "text": "Nos fins de semana, eu sempre ia para a casa dele.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "07cddf8ce4",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "sad",
+      "audio": "audio/07cddf8ce4.wav",
+      "duration_s": 3.6,
+      "is_gold": false,
+      "text": "Nos fins de semana, eu sempre ia para a casa dele.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "8d36f66f7c",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "sad",
+      "audio": "audio/8d36f66f7c.wav",
+      "duration_s": 3.6,
+      "is_gold": false,
+      "text": "De quem são essas malas que estão debaixo da mesa?",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "3272cfa096",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "sad",
+      "audio": "audio/3272cfa096.wav",
+      "duration_s": 3.92,
+      "is_gold": false,
+      "text": "De quem são essas malas que estão debaixo da mesa?",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "e2bc849979",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "sad",
+      "audio": "audio/e2bc849979.wav",
+      "duration_s": 3.515,
+      "is_gold": true,
+      "text": "Já chega! Eu vou tomar um banho e ir para a cama.",
+      "ask_naturalness": false,
+      "active": true,
+      "expected": {
+        "scale": "emos",
+        "min": 4
+      }
+    },
+    {
+      "id": "85c5c434b6",
+      "block": "rating_pt",
+      "language": "pt",
+      "target_emotion": "sad",
+      "audio": "audio/85c5c434b6.wav",
+      "duration_s": 3.634,
+      "is_gold": false,
+      "text": "Nos fins de semana, eu sempre ia para a casa dele.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "0899015070",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "angry",
+      "audio": "audio/0899015070.wav",
+      "duration_s": 2.08,
+      "is_gold": false,
+      "text": "A special pot too.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "bd1d0874fb",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "angry",
+      "audio": "audio/bd1d0874fb.wav",
+      "duration_s": 3.68,
+      "is_gold": false,
+      "text": "A special pot too.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "cd4fdb71b8",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "angry",
+      "audio": "audio/cd4fdb71b8.wav",
+      "duration_s": 2.88,
+      "is_gold": false,
+      "text": "And his heart wagged with joy like a lamb's tail.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "cbd552720f",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "angry",
+      "audio": "audio/cbd552720f.wav",
+      "duration_s": 2.64,
+      "is_gold": false,
+      "text": "And his heart wagged with joy like a lamb's tail.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "8a9296c730",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "angry",
+      "audio": "audio/8a9296c730.wav",
+      "duration_s": 2.32,
+      "is_gold": false,
+      "text": "But things haven't change yet.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "fafe4f74fd",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "angry",
+      "audio": "audio/fafe4f74fd.wav",
+      "duration_s": 2.64,
+      "is_gold": false,
+      "text": "But things haven't change yet.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "1f8b0b41be",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "angry",
+      "audio": "audio/1f8b0b41be.wav",
+      "duration_s": 1.6,
+      "is_gold": false,
+      "text": "But mom I'm not certain about.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "1ec1483e23",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "angry",
+      "audio": "audio/1ec1483e23.wav",
+      "duration_s": 2.08,
+      "is_gold": false,
+      "text": "But mom I'm not certain about.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "6b8d50c673",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "angry",
+      "audio": "audio/6b8d50c673.wav",
+      "duration_s": 1.84,
+      "is_gold": false,
+      "text": "Lucy, a clever farmer.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "7fa5f62506",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "angry",
+      "audio": "audio/7fa5f62506.wav",
+      "duration_s": 2.0,
+      "is_gold": false,
+      "text": "Lucy, a clever farmer.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "2ddef516ab",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "happy",
+      "audio": "audio/2ddef516ab.wav",
+      "duration_s": 2.0,
+      "is_gold": false,
+      "text": "And she caught at the brooch.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "0f2a6fbc38",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "happy",
+      "audio": "audio/0f2a6fbc38.wav",
+      "duration_s": 1.6,
+      "is_gold": false,
+      "text": "And she caught at the brooch.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "6b61522dc2",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "happy",
+      "audio": "audio/6b61522dc2.wav",
+      "duration_s": 2.0,
+      "is_gold": false,
+      "text": "where are you going?",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "8c9be793d5",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "happy",
+      "audio": "audio/8c9be793d5.wav",
+      "duration_s": 2.0,
+      "is_gold": false,
+      "text": "where are you going?",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "9188509f08",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "happy",
+      "audio": "audio/9188509f08.wav",
+      "duration_s": 1.76,
+      "is_gold": false,
+      "text": "Paul's teeth ached because of lemon.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "ca5572a63f",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "happy",
+      "audio": "audio/ca5572a63f.wav",
+      "duration_s": 2.48,
+      "is_gold": false,
+      "text": "Paul's teeth ached because of lemon.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "ee36682e6f",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "happy",
+      "audio": "audio/ee36682e6f.wav",
+      "duration_s": 1.92,
+      "is_gold": false,
+      "text": "I am going to back home.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "7b3c8ca294",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "happy",
+      "audio": "audio/7b3c8ca294.wav",
+      "duration_s": 1.44,
+      "is_gold": false,
+      "text": "I am going to back home.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "cb654c874e",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "happy",
+      "audio": "audio/cb654c874e.wav",
+      "duration_s": 1.76,
+      "is_gold": false,
+      "text": "What are you waiting for? man.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "1a9d9a2190",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "happy",
+      "audio": "audio/1a9d9a2190.wav",
+      "duration_s": 2.72,
+      "is_gold": false,
+      "text": "What are you waiting for? man.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "9e277b2873",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "sad",
+      "audio": "audio/9e277b2873.wav",
+      "duration_s": 2.72,
+      "is_gold": false,
+      "text": "She has no place for hot peper .",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "7954ec05f1",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "sad",
+      "audio": "audio/7954ec05f1.wav",
+      "duration_s": 2.16,
+      "is_gold": false,
+      "text": "She has no place for hot peper .",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "4ebe2dc7b9",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "sad",
+      "audio": "audio/4ebe2dc7b9.wav",
+      "duration_s": 1.44,
+      "is_gold": false,
+      "text": "They are made of wood.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "651200c486",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "sad",
+      "audio": "audio/651200c486.wav",
+      "duration_s": 1.44,
+      "is_gold": false,
+      "text": "They are made of wood.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "964622ee40",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "sad",
+      "audio": "audio/964622ee40.wav",
+      "duration_s": 2.4,
+      "is_gold": false,
+      "text": "You gain for nothing girl!",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "b01fae7d96",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "sad",
+      "audio": "audio/b01fae7d96.wav",
+      "duration_s": 2.08,
+      "is_gold": false,
+      "text": "You gain for nothing girl!",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "b8393333af",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "sad",
+      "audio": "audio/b8393333af.wav",
+      "duration_s": 1.76,
+      "is_gold": false,
+      "text": "A whirring noise was heard.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "fa686a25fe",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "sad",
+      "audio": "audio/fa686a25fe.wav",
+      "duration_s": 1.92,
+      "is_gold": false,
+      "text": "A whirring noise was heard.",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "70a9100297",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "sad",
+      "audio": "audio/70a9100297.wav",
+      "duration_s": 2.32,
+      "is_gold": false,
+      "text": "What do you think of this question?",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "640a71759a",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "sad",
+      "audio": "audio/640a71759a.wav",
+      "duration_s": 3.04,
+      "is_gold": false,
+      "text": "What do you think of this question?",
+      "ask_naturalness": true,
+      "active": true
+    },
+    {
+      "id": "5e517ed9a7",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "sad",
+      "audio": "audio/5e517ed9a7.wav",
+      "duration_s": 3.174,
+      "is_gold": true,
+      "text": "Dear customer,welcome to our ship.",
+      "ask_naturalness": false,
+      "active": true,
+      "expected": {
+        "scale": "emos",
+        "min": 4
+      }
+    },
+    {
+      "id": "307cbad27c",
+      "block": "rating_en",
+      "language": "en",
+      "target_emotion": "angry",
+      "audio": "audio/307cbad27c.wav",
+      "duration_s": 2.445,
+      "is_gold": true,
+      "text": "It's part of my secret.",
+      "ask_naturalness": false,
+      "active": true,
+      "expected": {
+        "scale": "emos",
+        "min": 4
+      }
+    },
+    {
+      "id": "b67e560561",
+      "block": "esa_extra",
+      "language": "pt",
+      "target_emotion": "sad",
+      "audio": "audio/b67e560561.wav",
+      "duration_s": 3.514,
+      "is_gold": false,
+      "text": "Já chega! Eu vou tomar um banho e ir para a cama.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "ab5f9be1df",
+      "block": "esa_extra",
+      "language": "pt",
+      "target_emotion": "happy",
+      "audio": "audio/ab5f9be1df.wav",
+      "duration_s": 1.996,
+      "is_gold": false,
+      "text": "Não importa quem está certo.",
+      "ask_naturalness": false,
+      "active": true
+    },
+    {
+      "id": "2fbf3a05fd",
+      "block": "training",
+      "language": "pt",
+      "target_emotion": "angry",
+      "audio": "audio/2fbf3a05fd.wav",
+      "duration_s": 3.5,
+      "is_gold": false,
+      "text": "",
+      "ask_naturalness": true,
+      "active": true,
+      "training_anchor": "gt_clear"
+    },
+    {
+      "id": "c9756d70c7",
+      "block": "training",
+      "language": "pt",
+      "target_emotion": "sad",
+      "audio": "audio/c9756d70c7.wav",
+      "duration_s": 3.92,
+      "is_gold": false,
+      "text": "",
+      "ask_naturalness": true,
+      "active": false,
+      "training_anchor": "synth_median"
+    },
+    {
+      "id": "cb71eb0045",
+      "block": "training",
+      "language": "pt",
+      "target_emotion": "happy",
+      "audio": "audio/cb71eb0045.wav",
+      "duration_s": 1.84,
+      "is_gold": false,
+      "text": "",
+      "ask_naturalness": true,
+      "active": true,
+      "training_anchor": "synth_bad"
+    },
+    {
+      "id": "da5d4768bf",
+      "block": "training",
+      "language": "pt",
+      "target_emotion": "sad",
+      "audio": "audio/da5d4768bf.wav",
+      "duration_s": 3.694,
+      "is_gold": false,
+      "text": "",
+      "ask_naturalness": true,
+      "active": true,
+      "training_anchor": "esa_example_emo"
+    },
+    {
+      "id": "df26c6dbfa",
+      "block": "training",
+      "language": "pt",
+      "target_emotion": "sad",
+      "audio": "audio/df26c6dbfa.wav",
+      "duration_s": 2.131,
+      "is_gold": false,
+      "text": "",
+      "ask_naturalness": true,
+      "active": true,
+      "training_anchor": "esa_example_neu",
+      "training_target_emotion": "angry"
+    }
+  ],
+  "esa_pairs": [
+    {
+      "pair_id": "esa_00",
+      "kind": "real",
+      "target_emotion": "angry",
+      "a": "7a75979cf1",
+      "b": "d4bb3d3c8d"
+    },
+    {
+      "pair_id": "esa_01",
+      "kind": "real",
+      "target_emotion": "angry",
+      "a": "42bc0c3193",
+      "b": "769b754556"
+    },
+    {
+      "pair_id": "esa_02",
+      "kind": "real",
+      "target_emotion": "angry",
+      "a": "44a08d750d",
+      "b": "55dddb84f1"
+    },
+    {
+      "pair_id": "esa_03",
+      "kind": "real",
+      "target_emotion": "angry",
+      "a": "7ee8613d52",
+      "b": "32898cc8cb"
+    },
+    {
+      "pair_id": "esa_04",
+      "kind": "real",
+      "target_emotion": "angry",
+      "a": "662d4bec7d",
+      "b": "eef677b99a"
+    },
+    {
+      "pair_id": "esa_05",
+      "kind": "real",
+      "target_emotion": "happy",
+      "a": "44973fd88f",
+      "b": "15cde6bc8f"
+    },
+    {
+      "pair_id": "esa_06",
+      "kind": "real",
+      "target_emotion": "happy",
+      "a": "765a15b780",
+      "b": "95dc819b6f"
+    },
+    {
+      "pair_id": "esa_07",
+      "kind": "real",
+      "target_emotion": "happy",
+      "a": "01accb92a9",
+      "b": "e6cd014c47"
+    },
+    {
+      "pair_id": "esa_08",
+      "kind": "real",
+      "target_emotion": "happy",
+      "a": "0a45955195",
+      "b": "7d37fd5838"
+    },
+    {
+      "pair_id": "esa_09",
+      "kind": "real",
+      "target_emotion": "happy",
+      "a": "89d45698bd",
+      "b": "62f76aa4d2"
+    },
+    {
+      "pair_id": "esa_10",
+      "kind": "real",
+      "target_emotion": "sad",
+      "a": "263850bc86",
+      "b": "011da174c7"
+    },
+    {
+      "pair_id": "esa_11",
+      "kind": "real",
+      "target_emotion": "sad",
+      "a": "f4a9184890",
+      "b": "21a250c74b"
+    },
+    {
+      "pair_id": "esa_12",
+      "kind": "real",
+      "target_emotion": "sad",
+      "a": "a835afe7a8",
+      "b": "c515422e43"
+    },
+    {
+      "pair_id": "esa_13",
+      "kind": "real",
+      "target_emotion": "sad",
+      "a": "332583af1d",
+      "b": "f5a9b0ccf8"
+    },
+    {
+      "pair_id": "esa_14",
+      "kind": "real",
+      "target_emotion": "sad",
+      "a": "20dc86e49f",
+      "b": "b28d728ad4"
+    },
+    {
+      "pair_id": "esa_15",
+      "kind": "real",
+      "target_emotion": "angry",
+      "a": "885366c69a",
+      "b": "debc31bcea"
+    },
+    {
+      "pair_id": "esa_16",
+      "kind": "real",
+      "target_emotion": "angry",
+      "a": "8e01dd1a8a",
+      "b": "954e7fc8a1"
+    },
+    {
+      "pair_id": "esa_17",
+      "kind": "real",
+      "target_emotion": "angry",
+      "a": "5fcd420a58",
+      "b": "36ad908829"
+    },
+    {
+      "pair_id": "esa_18",
+      "kind": "real",
+      "target_emotion": "angry",
+      "a": "3b10f0e38a",
+      "b": "5b4187a96c"
+    },
+    {
+      "pair_id": "esa_19",
+      "kind": "real",
+      "target_emotion": "angry",
+      "a": "8d4b6e107e",
+      "b": "307608ee39"
+    },
+    {
+      "pair_id": "esa_20",
+      "kind": "real",
+      "target_emotion": "happy",
+      "a": "a8966aad98",
+      "b": "a6bcc8d53c"
+    },
+    {
+      "pair_id": "esa_21",
+      "kind": "real",
+      "target_emotion": "happy",
+      "a": "e406addfea",
+      "b": "eabae0dfd5"
+    },
+    {
+      "pair_id": "esa_22",
+      "kind": "real",
+      "target_emotion": "happy",
+      "a": "2f1f9f702f",
+      "b": "863ddc3d46"
+    },
+    {
+      "pair_id": "esa_23",
+      "kind": "real",
+      "target_emotion": "happy",
+      "a": "bab7035097",
+      "b": "5f2ee157f7"
+    },
+    {
+      "pair_id": "esa_24",
+      "kind": "real",
+      "target_emotion": "happy",
+      "a": "5cc57c1a5b",
+      "b": "0db0dafcab"
+    },
+    {
+      "pair_id": "esa_25",
+      "kind": "real",
+      "target_emotion": "sad",
+      "a": "036bdbdc1b",
+      "b": "699efce81f"
+    },
+    {
+      "pair_id": "esa_26",
+      "kind": "real",
+      "target_emotion": "sad",
+      "a": "276322f8da",
+      "b": "4b1fab95a9"
+    },
+    {
+      "pair_id": "esa_27",
+      "kind": "real",
+      "target_emotion": "sad",
+      "a": "b92703c09a",
+      "b": "79d502508c"
+    },
+    {
+      "pair_id": "esa_28",
+      "kind": "real",
+      "target_emotion": "sad",
+      "a": "7f7f8e16b0",
+      "b": "07cddf8ce4"
+    },
+    {
+      "pair_id": "esa_29",
+      "kind": "real",
+      "target_emotion": "sad",
+      "a": "3272cfa096",
+      "b": "8d36f66f7c"
+    },
+    {
+      "pair_id": "esa_gold_0",
+      "kind": "gold",
+      "target_emotion": "sad",
+      "a": "e2bc849979",
+      "b": "b67e560561",
+      "expected_winner": "e2bc849979"
+    },
+    {
+      "pair_id": "esa_gold_1",
+      "kind": "gold",
+      "target_emotion": "happy",
+      "a": "ab5f9be1df",
+      "b": "6d9dd0c3f9",
+      "expected_winner": "6d9dd0c3f9"
+    },
+    {
+      "pair_id": "esa_trap_0",
+      "kind": "trapping",
+      "status": "placeholder",
+      "a": null,
+      "b": null,
+      "note": "trapping-pair: audio to be recorded"
+    }
+  ],
+  "esa_example_pair": {
+    "a": "da5d4768bf",
+    "b": "df26c6dbfa",
+    "target_emotion": "sad",
+    "counts": false
+  },
+  "placeholders": {
+    "trapping": [
+      {
+        "id": "trap_pt_1",
+        "block": "rating_pt",
+        "language": "pt",
+        "status": "placeholder",
+        "active": false,
+        "note": "retired in v4: replaced by content probes"
+      },
+      {
+        "id": "trap_pt_2",
+        "block": "rating_pt",
+        "language": "pt",
+        "status": "placeholder",
+        "active": false,
+        "note": "retired in v4: replaced by content probes"
+      },
+      {
+        "id": "trap_en_1",
+        "block": "rating_en",
+        "language": "en",
+        "status": "placeholder",
+        "active": false,
+        "note": "retired in v4: replaced by content probes"
+      },
+      {
+        "id": "trap_en_2",
+        "block": "rating_en",
+        "language": "en",
+        "status": "placeholder",
+        "active": false,
+        "note": "retired in v4: replaced by content probes"
+      }
+    ],
+    "headphone_check": [
+      {
+        "id": "hp_check_1",
+        "status": "placeholder",
+        "note": "headphone-gate trial audio to be recorded"
+      },
+      {
+        "id": "hp_check_2",
+        "status": "placeholder",
+        "note": "headphone-gate trial audio to be recorded"
+      }
+    ]
+  }
+}
